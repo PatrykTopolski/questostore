@@ -14,7 +14,7 @@ public abstract class User {
 
 
 
-    User(int id, String login, String password, String firstName, String lastName, int phoneNum, String adress, String userType) {
+    User(int id, String login, String password, String firstName, String lastName, String phoneNum, String adress, String userType) {
         this.setId(id);
         this.setLogin(login);
         this.setPassword(password);
@@ -79,7 +79,7 @@ public abstract class User {
         this.lastName = lastName;
     }
 
-    public int getPhoneNum() {
+    public String getPhoneNum() {
         return phoneNum;
     }
 
