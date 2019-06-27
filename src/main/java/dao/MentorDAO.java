@@ -6,10 +6,7 @@ import model.items.Quest;
 import model.users.Codecooler;
 import model.users.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,47 +21,34 @@ public class MentorDAO implements IMentorDAO {
 
     @Override
     public void createCodecooler(User user, Codecooler codecooler) {
+        createUser(user);
         try {
-            PreparedStatement statement = null;
-            Connection connection = dbCreator.connectToDatabase();
-
-            String query = "INSERT INTO users(login, password) VALUES (?,?)";
-
-            connection.prepareStatement(query);
-
-
-            statement.setString(1, user.getLogin());
-            statement.setString(2, user.getPassword());
-
-
-            statement.executeUpdate();
-
-            connection.close();
-
-        } catch (SQLException e){
+            int userID = getUserIdWithLogin(user);
+            codecooler.setId(userID);
+            createStudent(codecooler);
+        } catch(Exception e) {
             e.printStackTrace();
+            System.out.println("Failed to fetch user with this login");
         }
-
 
     }
 
     private void createUser(User user){
+        String query = "INSERT INTO users(login, password, usertype) VALUES (?,?,?)";
+        PreparedStatement statement = null;
+
         try {
-            PreparedStatement statement = null;
-            Connection connection = dbCreator.connectToDatabase();
-
-            String query = "INSERT INTO users(login, password) VALUES (?,?)";
-
-            connection.prepareStatement(query);
+            dbCreator.connectToDatabase();
+            statement = dbCreator.connection.prepareStatement(query);
 
 
             statement.setString(1, user.getLogin());
             statement.setString(2, user.getPassword());
+            statement.setString(3, user.getUserType());
 
 
             statement.executeUpdate();
-
-            connection.close();
+            dbCreator.connectToDatabase().close();
 
         } catch (SQLException e){
             e.printStackTrace();
@@ -72,36 +56,32 @@ public class MentorDAO implements IMentorDAO {
 
     }
 
-    private void createCodecooler(Codecooler cooler){
-        Codecooler codecooler;
-        List<Quest> list = new ArrayList<>();
-        codecooler = new Codecooler(1,"login", "password","name","surname", 1,"address", "codecooler", 0, 1, list, 0 );
+    private void createStudent(Codecooler codecooler){
+        String query = "INSERT INTO studentpersonals(address, class_id, coolcoins, email, experience_points," +
+                " first_name, last_name, phone_number, user_id) VALUES (?,?,?,?,?,?,?,?,?)";
+        PreparedStatement statement = null;
+
         try {
-            PreparedStatement statement = null;
-            Connection connection = dbCreator.connectToDatabase();
-
-            String query = "INSERT INTO studentpersonals(address, class_id, coolcoins, email, experience points," +
-                    " first_name, last_name, phone_number, user_id) VALUES (?,?,?,?,?,?,?,?,?)";
-
-            connection.prepareStatement(query);
+            dbCreator.connectToDatabase();
+            statement = dbCreator.connection.prepareStatement(query);
 
 
             statement.setString(1, codecooler.getAdress());
             statement.setInt(2, codecooler.getRoomID());
             statement.setInt(3, codecooler.getAmmountOfCoins());
-            statement.setString(4, codecooler.get);
-            statement.setString(6, codecooler.getPhoneNum());  // has to be string
-            statement.setString(7, codecooler.getAdress());
-            statement.setString(8, codecooler.getUserType());
+            statement.setString(4, codecooler.getEmail());
+            statement.setInt(5, codecooler.getLvlOfExp());
+            statement.setString(6, codecooler.getFirstName());
+            statement.setString(7, codecooler.getLastName());
+            statement.setString(8, codecooler.getPhoneNum());
+            statement.setInt(9, codecooler.getId());
 
-            statement.setInt(9, codecooler.getAmmountOfCoins());
-            statement.setInt(10, )
 
 
 
             statement.executeUpdate();
 
-            connection.close();
+            dbCreator.connectToDatabase().close();
 
         } catch (SQLException e){
             e.printStackTrace();
@@ -109,9 +89,38 @@ public class MentorDAO implements IMentorDAO {
 
     }
 
-    private int getUserIdWithLogin(User user){
+    private int getUserIdWithLogin(User user) throws Exception {
+        ResultSet results = null;
+        PreparedStatement statement = null;
+        String query = "SELECT * FROM users WHERE login = ?;";
+        try {
 
-    }
+            dbCreator.connectToDatabase();
+
+
+            statement = dbCreator.connection.prepareStatement(query);
+
+            statement.setString(1, user.getLogin());
+
+            results = statement.executeQuery();
+
+            results.next();
+
+            return results.getInt("id");
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Did not find user with this login SLQ Exception");
+
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new Exception("Did not find user with this login");
+        }
+
+
+        }
 
 
 
