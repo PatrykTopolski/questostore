@@ -1,4 +1,5 @@
 import com.sun.net.httpserver.HttpServer;
+import controller.helpers.AdminMentorsListHandler;
 
 import java.net.InetSocketAddress;
 
@@ -8,8 +9,7 @@ public class app {
         HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 
         // set routes
-        //server.createContext();
-
+        server.createContext("admin/showMentors", new AdminMentorsListHandler());
         server.setExecutor(null); // creates a default executor
 
         // start listening
