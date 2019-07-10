@@ -47,45 +47,16 @@
               </tr>
               <tr>
                 <td>1</td>
-                <td class="name">Tomasz Kwasigroch</td>
+                {% for name in names %}
+                <td class="name">{{fullName}}</td>
                 <td> <input type="button" value="Delete"> </td>
                 <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
                 <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
                 <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
+              </tr>
+              {% endfor %}
 
-              </tr>
-              <tr>
-                <td>2</td>
-                <td class="name">Bożena Bzibziak</td>
-                <td> <input type="button" value="Delete"> </td>
-                <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
-                <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
-                <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td class="name">Zdzisława Źdźbło</td>
-                <td> <input type="button" value="Delete"> </td>
-                <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
-                <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
-                <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td class="name">Bogusław Boligłowa</td>
-                <td> <input type="button" value="Delete"> </td>
-                <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
-                <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
-                <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td class="name">Gilbert Gamoń</td>
-                <td> <input type="button" value="Delete"> </td>
-                <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
-                <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
-                <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
-              </tr>
+
               <div class="addButton"> 
               <button class="inputButton" onclick="location.href='./createUpdateMentor.html'" type="button">Add</button>
             </div>

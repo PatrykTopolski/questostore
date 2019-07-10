@@ -10,7 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MentorDAO implements IMentorDAO {
@@ -30,6 +32,36 @@ public class MentorDAO implements IMentorDAO {
         int userID = getUserIdWithLogin(user);
         mentor.setId(userID);
         createMentor(mentor);
+    }
+
+    public List<Mentor> getAllMentors() throws DBException{
+        List<Mentor> mentorsList = new ArrayList<>();
+        try {
+            Connection connection = dbCreator.connectToDatabase();
+            PreparedStatement stm = connection.prepareStatement("select * from mentorspersonals");
+
+            ResultSet result = stm.executeQuery();
+            connection.close();
+            Mentor mentor = null;
+
+            while (result.next()) {
+                int id = result.getInt("user_id");
+                String firstName = result.getString("first_name");
+                String lastName = result.getString("last_name");
+                String phoneNum = result.getString("phone_number");
+                String email = result.getString("email");
+                String address = result.getString("address");
+                mentor = new Mentor(id, firstName, lastName, phoneNum, email, address);
+                mentorsList.add(mentor);
+            }
+
+            return mentorsList;
+        } catch (SQLException e) {
+            throw new DBException("SQLException occured in getMentor(int id)");
+
+        } catch (Exception e){
+            throw new DBException("Unidentified exception occured in getMentor(int id)");
+        }
     }
 
     public void updateMentorByID(Mentor mentor) throws DBException {

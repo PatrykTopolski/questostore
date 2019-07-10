@@ -36,6 +36,17 @@ public class Mentor extends User {
         setAdress(address);
     }
 
+    public Mentor(int id,  String firstName, String lastName, String phoneNum, String email, String adress){
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhoneNum(phoneNum);
+        setEmail(email);
+        setAdress(adress);
+    }
+
+
+
     public int getRoomID() {
         return roomID;
     }
