@@ -71,18 +71,10 @@ insert into Artifacts (artifact_name, artifact_category, artifact_description, a
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Tome of knowledge', 'Magic', 'Extra material for the current topic', 137, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Transform mentors', 'Magic', 'All mentors should dress up as pirates (or just funny) for the day ', 118, true);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Teleport', 'Magic', 'The whole course goes to an off-school program instead for a day', 221, false);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Magic', 'Tipping the fanfare-guy
-', 'The student can use jukebox exclusively for half day
-', 253, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values (10, 'Crown of prestige
-', 'Magic', 'You can wear the Crown of prestige for a whole day and thus everyone in your room should call you by a title of your choice (first student who pays on that day)
-', 249, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Royal game session
-', 'Magic', 'You can choose from a huge list of boardgames to rent for a game afternoon (Arcadia Quest, Arcadia Quest Inferno - KS exclusive edition, Rising Sun - KS exclusive edition, Mechs vs Minions, Dead of Winter - Hungarian edition, Captain Sonar, Hero Realms, Clank in Space, Sheriff of Nottingham etc.)
-', 95, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Circle of Sorcery
-', 'Magic', '60 min workshop by a mentor(s) of the chosen topic (mentors will organize it within a month)
-', 129, false);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Magic', 'Tipping the fanfare-guy', 'The student can use jukebox exclusively for half day', 253, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Crown of prestige', 'Magic', 'You can wear the Crown of prestige for a whole day and thus everyone in your room should call you by a title of your choice (first student who pays on that day)', 249, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Royal game session', 'Magic', 'You can choose from a huge list of boardgames to rent for a game afternoon (Arcadia Quest, Arcadia Quest Inferno - KS exclusive edition, Rising Sun - KS exclusive edition, Mechs vs Minions, Dead of Winter - Hungarian edition, Captain Sonar, Hero Realms, Clank in Space, Sheriff of Nottingham etc.)', 95, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Circle of Sorcery', 'Magic', '60 min workshop by a mentor(s) of the chosen topic (mentors will organize it within a month)', 129, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Myobloc', 'Zathin', 'ES', 215, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Argentum Nitricum', 'Cookley', 'Jetta', 275, true);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Foaming Hand Wash', 'Subin', 'Econoline E250', 123, true);

@@ -158,7 +158,7 @@ public class UserDAO implements IUserDAO {
                 return admin;
             }
 
-            throw new DBException("No student with id: " + id);
+            throw new DBException("No admin with id: " + id);
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in seeProfile()");
         } catch (Exception e) {
