@@ -29,7 +29,7 @@ public class WalletDAO implements IWalletDAO {
             if (result.next()) {
                 return result.getInt("coolcoins");
             }
-            throw new DBException("Didn't find codecooler with id: " + id);
+            throw new DBException("Didn't find student with id: " + id);
 
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in showWallet()");
@@ -47,11 +47,11 @@ public class WalletDAO implements IWalletDAO {
             Map<Integer, Integer> resultMap = new HashMap<Integer, Integer>();
 
             if (result.next()) {
-                int codecoolerID = result.getInt("user_id");
-                int codecoolerExperiencePoints = result.getInt("experience_points");
-                int codecoolerCoins = result.getInt("coolcoins");
-                int balance = codecoolerExperiencePoints - codecoolerCoins;
-                resultMap.put(codecoolerID, balance);
+                int studentID = result.getInt("user_id");
+                int studentExperiencePoints = result.getInt("experience_points");
+                int studentCoins = result.getInt("coolcoins");
+                int balance = studentExperiencePoints - studentCoins;
+                resultMap.put(studentID, balance);
                 return resultMap;
             }
             throw new DBException("No students found");

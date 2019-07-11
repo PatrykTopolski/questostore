@@ -43,10 +43,10 @@ public class ArtifactDAO implements IArtifactDAO {
             return allArtifacts;
 
         } catch (SQLException e) {
-            throw new DBException("SQLException occurred in getCodecoolers(int roomId))");
+            throw new DBException("SQLException occurred in getStudents(int roomId))");
 
         } catch (Exception e) {
-            throw new DBException("Unidentified exception occurred in getCodecoolers(int roomId)");
+            throw new DBException("Unidentified exception occurred in getStudents(int roomId)");
         }
 
     }

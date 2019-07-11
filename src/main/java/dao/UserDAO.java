@@ -19,28 +19,34 @@ public class UserDAO implements IUserDAO{
 
 
     //todo mentor and admin profile
-    public User seeProfile(int id) throws SQLException {
-        Connection connection = dbCreator.connectToDatabase();
-        PreparedStatement stm = connection.prepareStatement("select usertype from users where id=? ");
-        stm.setInt(1, id);
-        ResultSet result = stm.executeQuery();
-        String userType = new String();
-        if(result.next()){
-            userType = result.getString("usertype");
-        }
+    public User seeProfile(int id) throws DBException {
+        try {
+            Connection connection = dbCreator.connectToDatabase();
+            PreparedStatement stm = connection.prepareStatement("select usertype from users where id=? ");
+            stm.setInt(1, id);
+            ResultSet result = stm.executeQuery();
+            String userType = "";
+            if (result.next()) {
+                userType = result.getString("usertype");
+            }
 
-        if (userType.equals("codecooler")){
-            System.out.println("i am student");
-            Student student = getFullCodecoolerObject(id);
-            return student;
-        }else if(userType.equals(("mentor"))){
-            System.out.println("im mentor");
-            Mentor mentor = getFullMentor(id);
-            return mentor;
-        }else if (userType.equals("admin")){
-            System.out.println("i am admin");
-            Admin admin = getFullADmin(id);
-            return admin;
+            if (userType.equals("student")) {
+                System.out.println("i am student");
+                return getFullStudentObject(id);
+            } else if (userType.equals(("mentor"))) {
+                System.out.println("im mentor");
+                return getFullMentor(id);
+            } else if (userType.equals("admin")) {
+                System.out.println("i am admin");
+                return getFullAdmin(id);
+            }
+
+            throw new DBException("Wrong usertype or user doesn't exist");
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in seeProfile()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in seeProfile()");
+
         }
 
         return null;
@@ -53,38 +59,45 @@ public class UserDAO implements IUserDAO{
     }
 
 
-    private Student getFullCodecoolerObject(int id) throws SQLException{
-        DBCreator creator = new DBCreator();
-        Connection connection = creator.connectToDatabase();
-        System.out.println("connected");
-        PreparedStatement stm = connection.prepareStatement("select * from users left  join  studentpersonals on users.id=studentpersonals.user_id  where id= ? ");
-        stm.setInt(1 ,id);
 
-        ResultSet result = stm.executeQuery();
-        System.out.println("query executed");
-        Student student;
-        while (result.next()){
-            int user_id = result.getInt("id");
+    private Student getFullStudentObject(int id) throws DBException {
+        try {
+            DBCreator creator = new DBCreator();
+            Connection connection = creator.connectToDatabase();
+            System.out.println("connected");
+            PreparedStatement stm = connection.prepareStatement("select * from users left  join  studentpersonals on users.id=studentpersonals.user_id  where id= ? ");
+            stm.setInt(1, id);
 
-            String login = result.getString(("login"));
-            System.out.println(login);
-            String password = result.getString("password");
-            String firstName = result.getString("first_name");
-            String lastName = result.getString("last_name");
-            String phoneNumber = result.getString("phone_number");
-            String email = result.getString("email");
-            String address = result.getString("address");
-            int classID = result.getInt("class_id");
-            int experiencePoints = result.getInt("experience_points");
-            int coolcoins = result.getInt("coolcoins");
+            ResultSet result = stm.executeQuery();
+            System.out.println("query executed");
+            Student student;
+            if (result.next()) {
+                int user_id = result.getInt("id");
 
-            student = new Student(user_id, login, password, firstName, lastName,phoneNumber, email, address, classID, experiencePoints, coolcoins);
-            return student;
-        }
-        return null;
+                String login = result.getString(("login"));
+                System.out.println(login);
+                String password = result.getString("password");
+                String firstName = result.getString("first_name");
+                String lastName = result.getString("last_name");
+                String phoneNumber = result.getString("phone_number");
+                String email = result.getString("email");
+                String address = result.getString("address");
+                int classID = result.getInt("class_id");
+                int experiencePoints = result.getInt("experience_points");
+                int coolcoins = result.getInt("coolcoins");
+
+                student = new Student(user_id, login, password, firstName, lastName, phoneNumber, email, address, classID, experiencePoints, coolcoins);
+                return student;
+            }
+            throw new DBException("No student with id: " + id);
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in seeProfile()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in seeProfile()");
     }
 
-    private Mentor getFullMentor(int id) throws SQLException{
+    private Mentor getFullMentor(int id) throws DBException{
+      try{
         // this method do the same as methods in mentor class?
         // getMentorById and getMentorByFullName?
         DBCreator creator = new DBCreator();
@@ -111,10 +124,16 @@ public class UserDAO implements IUserDAO{
             mentor = new Mentor(user_id, login, password, firstName, lastName, phoneNumber, email, address);
             return mentor ;
         }
-        return null;
+               throw new DBException("No mentor with id: " + id);
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in seeProfile()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in seeProfile()");
+      }
     }
 
-    private Admin getFullADmin(int id) throws SQLException{
+    private Admin getFullADmin(int id) throws DBException{
+      try{
         DBCreator creator = new DBCreator();
         Connection connection = creator.connectToDatabase();
         System.out.println("connected");
@@ -140,6 +159,11 @@ public class UserDAO implements IUserDAO{
             return admin ;
         }
 
-        return null;
+                   throw new DBException("No student with id: " + id);
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in seeProfile()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in seeProfile()");
+    }
     }
 }
