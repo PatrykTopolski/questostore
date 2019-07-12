@@ -6,7 +6,7 @@ public class DBException extends Exception{
         super(message);
     }
 
-    public NoRecordException() {
+    public DBException() {
         super();
     }
 

@@ -1,14 +1,10 @@
 package dao;
 
 
-import model.items.Artifact;
-import model.items.Quest;
-import model.users.Codecooler;
 import model.users.Mentor;
 import model.users.User;
 
 import java.sql.SQLException;
-import java.util.Map;
 
 public interface IMentorDAO {
     //this interface contains methods to process mentor: show, create, update, assign to room

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Quest Store</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css" >
+    <link rel="stylesheet" type="text/css" href="static/css/profileStyle.css" >
+
+    <link rel="shortcut icon" type="image/png" href="static/recourses/codecoolThumbnail.png">
+</head>
+
+<body>
+    <header>
+        <div class="content">
+            <nav>
+                <ul id="navToolBar">
+                    <li><img src="static/recourses/codecoolLogoprecel.png"></li>
+                    <li><a href="profile.html">Profile</a></li>
+                    <li><a href="artifacts.html">Store</a></li>
+                    <li><a href="quests.html">Quests</a></li>
+                    <li><a href="transactions.html">Transactions</a></li>
+                    <li style="float:right"> <a href="../login.html">log out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="profileContent">
+        <h1>profile</h1>
+        <div class="profile">
+            <div class="profile-left">
+                <img src="static/recourses/zgredek.gif" width="200" height="210">
+                <h2><a href="#">change picture</a></h2>
+                <h2><a href="#">change information</a></h2>
+            </div>
+            <div class="profile-right">
+                <table style="width:100%">
+                    <h2>personal information</h2>
+                    <tr>
+                        <td class="profile-setting"> Name</td>
+                        <td class="user-entry">{{ firstName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="profile-setting"> Last name</td>
+                        <td class="user-entry">{{ lastName }}</td>
+                    </tr>
+                    <tr>
+                        <td class="profile-setting">Birth date:</td>
+                        <td class="user-entry">Not yet defined</td>
+                    </tr>
+                </table>
+                <table style="width:100%">
+                    <h2>contact</h2>
+                    <tr>
+                        <td class="profile-setting"> Phone number</td>
+                        <td class="user-entry">{{ phoneNumber }}</td>
+                    </tr>
+                    <tr>
+                        <td class="profile-setting"> Email</td>
+                        <td class="user-entry"> {{ email }}</td>
+                    </tr>
+                    <tr>
+                        <td class="profile-setting">github:</td>
+                        <td class="user-entry">Not yet defined</td>
+                    </tr>
+                </table>
+                <table style="width:100%">
+                        <h2>codecool</h2>
+                        <tr>
+                            <td class="profile-setting">class:</td>
+                            <td class="user-entry"><a href="#">Not yet defined</a></td>
+                        </tr>
+                        <tr>
+                            <td class="profile-setting">personal mentor:</td>
+                            <td class="user-entry"><a href="#">Not yet defined</a></td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+    </div>
+    <div class="profileContent">
+        <h1>wallet</h1>
+        <table class="wallet-content">
+            <tr>
+                <td>AMOUNT OF COINS:</td>
+                <td>Any number</td>
+            </tr>
+            <tr>
+                <td>TOTAL COINS GATHERED:</td>
+                <td>Bigger number or equal</td>
+            </tr>
+        </table>
+    </div>
+    <div class="profileContent">
+        <h1>not yet available</h1>
+    </div>
+    <footer></footer>
+</body>
+</html>

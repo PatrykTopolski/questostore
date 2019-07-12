@@ -8,10 +8,10 @@ import java.util.List;
 public interface IQuestDAO {
     //this interface contains methods to process quests: show, create, update
 
-    List<Quest> seeQuestsList() throws SQLException;
-    void createNewQuest(Quest quest);
+    List<Quest> getQuestsList() throws DBException;
+    void createNewQuest(Quest quest) throws DBException;
     void addQuestToAvailable();
-    void updateQuestCategory(Quest quest);
-    void updateQuest(String questName, int newValue) throws SQLException;
-    void markAchivedQuests();
+    void updateQuestCategory(Quest quest) throws DBException;
+    void updateQuest(String questName, int newValue) throws DBException;
+    void markAchievedQuests();
 }

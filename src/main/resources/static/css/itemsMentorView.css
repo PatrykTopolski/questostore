@@ -1,0 +1,28 @@
+.item-tools,
+.add-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 18px;
+    border-radius: 2px;
+    background: #E0E4E7;
+    align-items: center;
+    box-shadow: 2px 3px 6px #080B0C;
+}
+
+.add-item {
+    margin-left: 33%;
+    width: 33%;
+}
+
+.item-tools p,
+.add-item p {
+    margin-top: 0.5vw;
+    margin-bottom: 0.7vw;
+    font-size: 18px;
+    color: #080B0C;
+}
+
+.createButton {
+    font-size: 180%;
+}

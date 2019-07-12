@@ -1,31 +1,30 @@
 package dao;
 
 import model.items.Artifact;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArtifactDAO {
+public class ArtifactDAO implements IArtifactDAO {
     //this class contains methods to process artifacts(show, create, update)
 
-    Connection connection;
-    DBCreator dbCreator;
+    private Connection connection;
+    private DBCreator dbCreator;
 
-    ArtifactDAO(){
+    ArtifactDAO() {
         dbCreator = new DBCreator();
     }
 
-    public List<Artifact> showAllArtifacts() throws SQLException{
-        List<Artifact> allArtifacts = new ArrayList();
-        Connection con = dbCreator.connectToDatabase();
-        Statement stmt = null;
-        ResultSet resultSet = null;
-
+    public List<Artifact> getArtifactsList() throws DBException {
         try {
+            List<Artifact> allArtifacts = new ArrayList();
+            Connection con = dbCreator.connectToDatabase();
+
             con.setAutoCommit(false);
-            stmt = con.createStatement();
-            resultSet = stmt.executeQuery( "SELECT * FROM artifacts;" );
-            while (resultSet.next() ) {
+            Statement stmt = con.createStatement();
+            ResultSet resultSet = stmt.executeQuery("SELECT * FROM artifacts;");
+            while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String name = resultSet.getString("artifact_name");
                 String category = resultSet.getString("artifact_category");
@@ -35,15 +34,21 @@ public class ArtifactDAO {
                 Artifact newArtifact = new Artifact(id, name, description, category, price, availability);
                 allArtifacts.add(newArtifact);
             }
+
             resultSet.close();
             stmt.close();
             con.close();
-        } catch ( Exception e ) {
-            System.out.println(e);
+            System.out.println("Operation done successfully");
+            System.out.println("all artifact size: " + allArtifacts.size());
+            return allArtifacts;
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in getStudents(int roomId))");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in getStudents(int roomId)");
         }
-        System.out.println("Operation done successfully");
-        System.out.println("all artifact size: " + allArtifacts.size());
-        return allArtifacts;
+
     }
 
 
@@ -53,29 +58,31 @@ public class ArtifactDAO {
     }
 
 
-    public void createArtifact(Artifact artifact) {
+    public void createArtifact(Artifact artifact) throws DBException {
         String query = "INSERT INTO Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability)" +
                 " VALUES (?,?,?,?,?)";
-        PreparedStatement statement = null;
         try {
             connection = dbCreator.connectToDatabase();
-            statement = connection.prepareStatement(query);
+            PreparedStatement statement = connection.prepareStatement(query);
 
             statement.setString(1, artifact.getName());
             statement.setString(2, artifact.getCategory());
-            statement.setString(3, artifact.getDiscription());
+            statement.setString(3, artifact.getDescription());
             statement.setInt(4, artifact.getPrice());
-            statement.setBoolean(5, artifact.isAvaliability());
+            statement.setBoolean(5, artifact.isAvailability());
 
             statement.executeUpdate();
             connection.close();
 
-        } catch (SQLException e){
-            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in createArtifact()");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in createArtifact()");
         }
     }
 
-    public void updateArtifact(String artifactName, int newPrice) {
+    public void updateArtifact(String artifactName, int newPrice) throws DBException {
         DBCreator dbCreator = new DBCreator();
         try {
             Connection connection = dbCreator.connectToDatabase();
@@ -83,8 +90,11 @@ public class ArtifactDAO {
             stm.setInt(1, newPrice);
             stm.setString(2, artifactName);
             stm.executeUpdate();
-        }catch (SQLException e){
-            System.out.println(e);
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in updateArtifact()");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in updateArtifact()");
         }
     }
 
@@ -93,36 +103,38 @@ public class ArtifactDAO {
 
     }
 
-    public List<Artifact> showBoughtArtifacts(int userId) throws SQLException{
+    public List<Artifact> getBoughtArtifactsList(int userId) throws DBException {
         DBCreator dbCreator = new DBCreator();
-        Connection con = dbCreator.connectToDatabase();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
         List<Artifact> boughtArtifacts = new ArrayList();
-
         try {
-            stmt = con.prepareStatement("SELECT art.id, artifact_name, artifact_category, artifact_description, artifact_price\n" +
+            Connection con = dbCreator.connectToDatabase();
+
+            PreparedStatement stmt = con.prepareStatement("SELECT art.id, artifact_name, artifact_category, artifact_description, artifact_price\n" +
                     "FROM users_artifacts usersArt INNER JOIN artifacts art\n" +
                     "ON usersArt.artifact_id = art.id\n" +
                     "WHERE user_id = ?;");
             stmt.setInt(1, userId);
-            rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-            while(rs.next()){
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("artifact_name");
-                String discription = rs.getString("artifact_description");
+                String description = rs.getString("artifact_description");
                 String category = rs.getString("artifact_category");
                 int price = rs.getInt("artifact_price");
-                Artifact nextArtifact = new Artifact(id, name, category, price, discription);
+                Artifact nextArtifact = new Artifact(id, name, category, price, description);
 
                 boughtArtifacts.add(nextArtifact);
             }
             stmt.close();
             con.close();
-        } catch ( Exception e ) {
-            System.out.println(e);
+            return boughtArtifacts;
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in getBoughtArtifactsList()");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in getBoughtArtifactsList()");
         }
-        return boughtArtifacts;
+
     }
 }

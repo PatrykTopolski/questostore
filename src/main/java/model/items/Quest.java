@@ -4,14 +4,14 @@ public class Quest {
 
     private int id;
     private String name;
-    private String discription;
+    private String description;
     private String category;
     private int reward;
 
-    public Quest(int id, String name, String discription, String category, int reward) {
+    public Quest(int id, String name, String description, String category, int reward) {
         this.id = id;
         this.name = name;
-        this.discription = discription;
+        this.description = description;
         this.category = category;
         this.reward = reward;
     }
@@ -32,7 +32,7 @@ public class Quest {
         return reward;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 }

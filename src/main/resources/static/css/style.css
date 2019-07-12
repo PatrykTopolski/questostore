@@ -1,0 +1,79 @@
+body {
+    background: url(../recourses/background.jpg)no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Raleway', sans-serif;
+
+
+}
+
+p {
+   color: #F4F4F9;
+}
+
+h1 {
+    /* color: #B8DBD9; */
+    color: #E0E4E7;
+}
+
+a{
+    color: #F4F4F9;
+}
+
+h2 {
+
+    color: #E0E4E7;
+}
+
+
+nav {
+  font-family: 'Raleway', sans-serif;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  /* margin-top: 2%;
+  margin-bottom: 8%; */
+  }
+
+nav img {
+  width: 30%;
+  margin-top:3%;
+}
+
+#navToolBar {
+  list-style-type: none;
+  margin-top: -15px;
+  margin-bottom: 6%;
+  padding: 0;
+  overflow: hidden;
+  background-color: #E0E4E7;
+  
+  }
+    
+  #navToolBar li {
+    float: left;
+    border-right: 1px solid #bbb;
+  }
+  
+  #navToolBar li:last-child {
+    border-right: none;
+  }
+  
+  #navToolBar li a {
+    display: block;
+    color: #080B0C;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bolder;
+
+  }
+  
+  #navToolBar li a:hover:not(.active) {
+    background-color: #768993;
+  }
+  
+  .active {
+    background-color: rgb(158, 76, 175);
+  }

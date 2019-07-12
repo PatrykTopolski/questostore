@@ -1,0 +1,35 @@
+#transactions-table{
+    width:70%;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+#transactions-table{
+    margin: 25px 0;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    text-align: center;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+
+}
+
+#transactions-table tr{
+    background-color: #768993;
+    border-bottom:1px solid #dddddd;
+}
+
+#transactions-table tablehead tr{
+    background-color: #303D44;
+    font-weight: bold;
+}
+
+
+#transactions-table th,
+#transactions-table tr{
+    padding: 12px 15px;
+}
+#transactions-table tr:last-of-type{
+    border-bottom:1px solid #303D44;
+}

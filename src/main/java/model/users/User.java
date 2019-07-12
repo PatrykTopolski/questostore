@@ -8,14 +8,14 @@ public abstract class User {
     private String lastName;
     private String phoneNum;
     private String email;
-    private String adress;
+    private String address;
     private String userType;
 
     User(){}
 
 
 
-    User(int id, String login, String password, String firstName, String lastName, String phoneNum, String email, String adress, String userType) {
+    User(int id, String login, String password, String firstName, String lastName, String phoneNum, String email, String address, String userType) {
         this.setId(id);
         this.setLogin(login);
         this.setPassword(password);
@@ -23,7 +23,7 @@ public abstract class User {
         this.setLastName(lastName);
         this.setPhoneNum(phoneNum);
         this.email = email;
-        this.setAdress(adress);
+        this.setAddress(address);
         this.userType = userType;
     }
 
@@ -33,12 +33,12 @@ public abstract class User {
         this.setPassword(password);
     }
 
-    public User(int id, String firstName, String lastName, String phoneNum, String adress) {
+    public User(int id, String firstName, String lastName, String phoneNum, String address) {
         this.setId(id);
         this.setFirstName(firstName);
         this.setLastName(lastName);
         this.setPhoneNum(phoneNum);
-        this.setAdress(adress);
+        this.setAddress(address);
     }
 
     public int getId() {
@@ -89,12 +89,12 @@ public abstract class User {
         this.phoneNum = phoneNum;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getUserType() {

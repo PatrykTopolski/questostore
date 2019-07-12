@@ -3,31 +3,31 @@ package model.items;
 public class Artifact {
     private int id;
     private String name;
-    private String discription;
+    private String description;
     private String category;
     private int price;
-    private boolean avaliability;
+    private boolean availability;
 
-    public Artifact(int id, String name, String discription, String category, int price, boolean avaliability) {
+    public Artifact(int id, String name, String description, String category, int price, boolean availability) {
         this.id = id;
         this.name = name;
-        this.discription = discription;
+        this.description = description;
         this.category = category;
         this.price = price;
-        this.avaliability = avaliability;
+        this.availability = availability;
     }
 
-    public Artifact(int id, String category, int price, boolean avaliability) {
+    public Artifact(int id, String category, int price, boolean availability) {
         this.id = id;
         this.category = category;
         this.price = price;
-        this.avaliability = avaliability;
+        this.availability = availability;
     }
 
-    public Artifact(int id, String name, String category, int price, String discription){
+    public Artifact(int id, String name, String category, int price, String description){
         this.id = id;
         this.name = name;
-        this.discription = discription;
+        this.description = description;
         this.category = category;
         this.price = price;
     }
@@ -40,8 +40,8 @@ public class Artifact {
         return name;
     }
 
-    public String getDiscription() {
-        return discription;
+    public String getDescription() {
+        return description;
     }
 
     public String getCategory() {
@@ -52,7 +52,7 @@ public class Artifact {
         return price;
     }
 
-    public boolean isAvaliability() {
-        return avaliability;
+    public boolean isAvailability() {
+        return availability;
     }
 }

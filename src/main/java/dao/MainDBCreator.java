@@ -22,7 +22,9 @@ public class MainDBCreator {
          user.getLogin();
 
 
-        }catch (SQLException e){
+        } catch (SQLException e){
+            e.printStackTrace();
+        } catch (DBException e){
             e.printStackTrace();
         }
     }

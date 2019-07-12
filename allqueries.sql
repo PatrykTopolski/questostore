@@ -71,18 +71,10 @@ insert into Artifacts (artifact_name, artifact_category, artifact_description, a
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Tome of knowledge', 'Magic', 'Extra material for the current topic', 137, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Transform mentors', 'Magic', 'All mentors should dress up as pirates (or just funny) for the day ', 118, true);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Teleport', 'Magic', 'The whole course goes to an off-school program instead for a day', 221, false);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Magic', 'Tipping the fanfare-guy
-', 'The student can use jukebox exclusively for half day
-', 253, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values (10, 'Crown of prestige
-', 'Magic', 'You can wear the Crown of prestige for a whole day and thus everyone in your room should call you by a title of your choice (first student who pays on that day)
-', 249, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Royal game session
-', 'Magic', 'You can choose from a huge list of boardgames to rent for a game afternoon (Arcadia Quest, Arcadia Quest Inferno - KS exclusive edition, Rising Sun - KS exclusive edition, Mechs vs Minions, Dead of Winter - Hungarian edition, Captain Sonar, Hero Realms, Clank in Space, Sheriff of Nottingham etc.)
-', 95, true);
-insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Circle of Sorcery
-', 'Magic', '60 min workshop by a mentor(s) of the chosen topic (mentors will organize it within a month)
-', 129, false);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Magic', 'Tipping the fanfare-guy', 'The student can use jukebox exclusively for half day', 253, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Crown of prestige', 'Magic', 'You can wear the Crown of prestige for a whole day and thus everyone in your room should call you by a title of your choice (first student who pays on that day)', 249, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Royal game session', 'Magic', 'You can choose from a huge list of boardgames to rent for a game afternoon (Arcadia Quest, Arcadia Quest Inferno - KS exclusive edition, Rising Sun - KS exclusive edition, Mechs vs Minions, Dead of Winter - Hungarian edition, Captain Sonar, Hero Realms, Clank in Space, Sheriff of Nottingham etc.)', 95, true);
+insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Circle of Sorcery', 'Magic', '60 min workshop by a mentor(s) of the chosen topic (mentors will organize it within a month)', 129, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Myobloc', 'Zathin', 'ES', 215, false);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Argentum Nitricum', 'Cookley', 'Jetta', 275, true);
 insert into Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability) values ('Foaming Hand Wash', 'Subin', 'Econoline E250', 123, true);
@@ -171,26 +163,26 @@ insert into Users (login, password, usertype) values ('ascourfieldd', '8lb7DnRJP
 insert into Users (login, password, usertype) values ('afairleme', 'dvclZVAnbE5', 'mentor');
 insert into Users (login, password, usertype) values ('jbowmenf', 'gNph5ydnm3', 'mentor');
 insert into Users (login, password, usertype) values ('blintotg', 'iD49MxOUx8a', 'mentor');
-insert into Users (login, password, usertype) values ('cdibbeh', 'i18J9YIgYYM', 'codecooler');
-insert into Users (login, password, usertype) values ('tryami', 'lkfsKpZoE', 'codecooler');
-insert into Users (login, password, usertype) values ('jbucklej', 'CNUAhKX8J', 'codecooler');
-insert into Users (login, password, usertype) values ('fhaddockk', 'CCSrbBRMGDw3', 'codecooler');
-insert into Users (login, password, usertype) values ('kferonl', 'U6VKnw79i', 'codecooler');
-insert into Users (login, password, usertype) values ('msouthworthm', '8cIpXHNy', 'codecooler');
-insert into Users (login, password, usertype) values ('tmelledyn', 'oTH50B9I0', 'codecooler');
-insert into Users (login, password, usertype) values ('bneggrinio', 'xVAA9u', 'codecooler');
-insert into Users (login, password, usertype) values ('kquirkp', 'veku5xLIX', 'codecooler');
-insert into Users (login, password, usertype) values ('lcollecottq', '8tQYqMw4z', 'codecooler');
-insert into Users (login, password, usertype) values ('hhampr', 'GIfW8bTkS7t', 'codecooler');
-insert into Users (login, password, usertype) values ('bwescotts', 'OeEwCtYkM', 'codecooler');
-insert into Users (login, password, usertype) values ('tringet', 'XcStl4jt3U', 'codecooler');
-insert into Users (login, password, usertype) values ('fgeffcocku', 'JseM2vmPF2', 'codecooler');
-insert into Users (login, password, usertype) values ('gmirrallsv', '51vZiDO', 'codecooler');
-insert into Users (login, password, usertype) values ('asoftleyw', 'd6sl4sS2q', 'codecooler');
-insert into Users (login, password, usertype) values ('elacyx', 'lKgmOOxgapo', 'codecooler');
-insert into Users (login, password, usertype) values ('gstoakleyy', 'kyr8kff', 'codecooler');
-insert into Users (login, password, usertype) values ('abaccupz', 'CZzwI2wJm3', 'codecooler');
-insert into Users (login, password, usertype) values ('cgrewcock10', 'Nz1yWC9YApYL', 'codecooler');
+insert into Users (login, password, usertype) values ('cdibbeh', 'i18J9YIgYYM', 'student');
+insert into Users (login, password, usertype) values ('tryami', 'lkfsKpZoE', 'student');
+insert into Users (login, password, usertype) values ('jbucklej', 'CNUAhKX8J', 'student');
+insert into Users (login, password, usertype) values ('fhaddockk', 'CCSrbBRMGDw3', 'student');
+insert into Users (login, password, usertype) values ('kferonl', 'U6VKnw79i', 'student');
+insert into Users (login, password, usertype) values ('msouthworthm', '8cIpXHNy', 'student');
+insert into Users (login, password, usertype) values ('tmelledyn', 'oTH50B9I0', 'student');
+insert into Users (login, password, usertype) values ('bneggrinio', 'xVAA9u', 'student');
+insert into Users (login, password, usertype) values ('kquirkp', 'veku5xLIX', 'student');
+insert into Users (login, password, usertype) values ('lcollecottq', '8tQYqMw4z', 'student');
+insert into Users (login, password, usertype) values ('hhampr', 'GIfW8bTkS7t', 'student');
+insert into Users (login, password, usertype) values ('bwescotts', 'OeEwCtYkM', 'student');
+insert into Users (login, password, usertype) values ('tringet', 'XcStl4jt3U', 'student');
+insert into Users (login, password, usertype) values ('fgeffcocku', 'JseM2vmPF2', 'student');
+insert into Users (login, password, usertype) values ('gmirrallsv', '51vZiDO', 'student');
+insert into Users (login, password, usertype) values ('asoftleyw', 'd6sl4sS2q', 'student');
+insert into Users (login, password, usertype) values ('elacyx', 'lKgmOOxgapo', 'student');
+insert into Users (login, password, usertype) values ('gstoakleyy', 'kyr8kff', 'student');
+insert into Users (login, password, usertype) values ('abaccupz', 'CZzwI2wJm3', 'student');
+insert into Users (login, password, usertype) values ('cgrewcock10', 'Nz1yWC9YApYL', 'student');
 
 
 create table if not exists Users_artifacts (

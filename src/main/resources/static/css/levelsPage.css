@@ -1,0 +1,58 @@
+table#levels-table{
+    width:70%;
+    margin-left:15%;
+    margin-right:15%;
+}
+
+#levels-table{
+    margin: 25px 0;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    text-align: center;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+
+}
+
+#levels-table tr{
+    background-color: #768993;
+    border-bottom:1px solid #dddddd;
+}
+
+#levels-table thead tr{
+    background-color: #303D44;
+    font-weight: bold;
+}
+
+
+#levels-table th,
+#levels-table tr{
+    padding: 12px 15px;
+}
+#levels-table tr:last-of-type{
+    border-bottom:1px solid #303D44;
+}
+
+.add-new-level input[type=text],
+textarea{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	border:1px solid #BEBEBE;
+	padding: 7px;
+	margin:0px;
+	outline: none;
+}
+
+.add-new-level {
+    text-align: center;
+
+}
+
+.add-new-level label{
+    font-family: 'Raleway', sans-serif;
+    color: #E0E4E7;
+    background: #303D44;
+    font-weight: bold;
+}

@@ -1,0 +1,82 @@
+.usersList {
+    margin-left: 20%;
+    margin-top: -3%;
+    position: relative;
+  
+}
+
+.usersList h4 {
+    font-size: 150%;
+    color: #F4F4F9;
+    margin-left: 15%;
+    
+    
+  }
+
+.usersList input[type="button"]{
+    display: block;
+    margin: auto;
+}
+
+.usersList table {
+font-size: 100%;
+border-collapse: collapse;
+width: 50%;
+margin-bottom: 5%;
+}
+
+.usersList td, th {
+border: 1px solid #dddddd;
+text-align: center;
+padding: 8px;
+color: #F4F4F9;
+background-color: #768993;
+height: 50px; 
+width: 30px;
+
+}
+
+th {
+    background-color: #303D44;
+}
+
+td:first-child {
+    background-color: #303D44;
+}
+
+.name{
+    width: 40%;
+}
+
+
+.addButton {
+    position: absolute;
+    top: 105%;
+    right: 52%;
+    border-radius: 25px;
+    border: none;
+    height: 30%;;
+}
+
+.addButton input {
+   
+    border-radius: 5px;
+    border: none;
+    height: 20%;
+    width: 150%;
+
+}
+
+.inputButton {
+    border-radius: 5px;
+    border: none;
+    height: 20%;
+    width: 150%;
+}
+
+
+
+/* .usersList tr:nth-child(even) {
+background-color: #dddddd;
+
+} */
