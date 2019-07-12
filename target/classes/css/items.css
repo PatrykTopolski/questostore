@@ -1,0 +1,44 @@
+.items {
+    text-align: center;
+    display: block;
+}
+
+img {
+    padding: 0.5vw;
+    width: 20vw;
+}
+
+h2 {
+    margin-top: -6vw;
+    font-size: 5vw;
+    text-shadow: 2px 2px #080B0C;
+}
+
+.item {
+    margin: 30px;
+    padding: 0.5vw;
+    background-color: navy;
+    color: #ffffff;
+    display: inline-block;
+    width: 80%;
+    border: 2px solid #E0E4E7;
+    border-radius: 5px;
+    box-shadow: 2px 3px 6px #080B0C;
+}
+
+.item-description {
+    margin-bottom: 20px;
+}
+
+.item-header {
+    font-size: 18px;
+    color: #080B0C;
+    border-radius: 3px;
+    padding: 1vw 0 1vw 0;
+    background: #E0E4E7;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: 2px 3px 6px #080B0C;
+}

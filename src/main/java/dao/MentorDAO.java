@@ -46,7 +46,7 @@ public class MentorDAO implements IMentorDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateMentorByID(Mentor mentor)");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in updateMentorByID(Mentor mentor)");
         }
 
@@ -71,7 +71,7 @@ public class MentorDAO implements IMentorDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateMentorByFullName(Mentor mentor)");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in updateMentorByFullName(Mentor mentor)");
         }
 
@@ -81,8 +81,8 @@ public class MentorDAO implements IMentorDAO {
     public Mentor getMentorById(int id) throws DBException {
         try {
             Connection connection = dbCreator.connectToDatabase();
-            PreparedStatement stm = connection.prepareStatement("select * from mentorspersonals left join classes on " +
-                    "mentorspersonals.user_id = classes.user_id where mentorspersonals.user_id = ?;");
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM mentorspersonals LEFT JOIN classes ON " +
+                    "mentorspersonals.user_id = classes.user_id WHERE mentorspersonals.user_id = ?;");
 
             stm.setInt(1, id);
             ResultSet result = stm.executeQuery();
@@ -105,7 +105,7 @@ public class MentorDAO implements IMentorDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getMentor(int id)");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getMentor(int id)");
         }
     }
@@ -124,7 +124,7 @@ public class MentorDAO implements IMentorDAO {
             if (result.next()) {
                 userID = result.getInt("user_id");
             }
-            stm = connection.prepareStatement("select * from mentorspersonals left join classes on " + "mentorspersonals.user_id = classes.user_id where mentorspersonals.user_id = ?;");
+            stm = connection.prepareStatement("SELECT * FROM mentorspersonals LEFT JOIN classes ON " + "mentorspersonals.user_id = classes.user_id WHERE mentorspersonals.user_id = ?;");
             stm.setInt(1, userID);
             result = stm.executeQuery();
 
@@ -142,18 +142,45 @@ public class MentorDAO implements IMentorDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getMentor(String firstName, String lastName)");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getMentor(String firstName, String lastName)");
         }
     }
 
     //todo
-    public void assignMentorToRoom() {
+    public void assignMentorToRoom(Mentor mentor) throws DBException {
+        try {
+//            UPDATE vehicles_vehicle AS v
+//            SET price = s.price_per_vehicle
+//            FROM shipments_shipment AS s
+//            WHERE v.shipment_id = s.id
+            String quer = "UPDATE mentorsPersonals SET first_name = ?, last_name = ?, phone_number = ?, email = ?, adress = ? WHERE id = ?";
+            String query = "UPDATE mentorsPersonals as m, classes as c SET m.first_name = ?, m.last_name = ?, m.phone_number = ?, m.email = ?, m.adress = ?, c.user_id = ? WHERE m.user_id = c.mentor_id";
+            PreparedStatement stm = connection.prepareStatement("SELECT * FROM mentorspersonals LEFT JOIN classes ON " + "mentorspersonals.user_id = classes.user_id WHERE mentorspersonals.user_id = ?;");
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, mentor.getFirstName());
+            statement.setString(2, mentor.getLastName());
+            statement.setString(3, mentor.getPhoneNum());
+            statement.setString(4, mentor.getEmail());
+            statement.setString(5, mentor.getAddress());
+            statement.setInt(6, mentor.getId());
+
+            statement.executeUpdate();
+            connection.close();
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in assignMentorToClass(Mentor mentor)");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in assignMentorToClass(Mentor mentor)");
+        }
 
     }
 
+
     private void createUser(User user) throws DBException {
-        String query = "INSERT INTO users(login, password, usertype) VALUES (?,?,?)";
+        String query = "INSERT INTO USERS(login, password, usertype) VALUES (?,?,?)";
 
         try {
             connection = dbCreator.connectToDatabase();
@@ -164,9 +191,9 @@ public class MentorDAO implements IMentorDAO {
             statement.executeUpdate();
             dbCreator.connectToDatabase().close();
 
-        } catch (SQLException e){
+        } catch (SQLException e) {
             throw new DBException("SQLException occurred in createUser(User user)");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in createUser(User user)");
         }
     }
@@ -186,15 +213,15 @@ public class MentorDAO implements IMentorDAO {
 
             dbCreator.connectToDatabase().close();
 
-        }  catch (SQLException e){
+        } catch (SQLException e) {
             throw new DBException("SQLException occurred in createMentor(Mentor mentor)");
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in createMentor(Mentor mentor)");
         }
     }
 
     private int getUserIdWithLogin(User user) throws DBException {
-        String query = "SELECT * FROM users WHERE login = ?;";
+        String query = "SELECT * FROM USERS WHERE login = ?;";
         try {
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
@@ -206,7 +233,7 @@ public class MentorDAO implements IMentorDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getUserIdWithLogin(User user)");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getUserIdWithLogin(User user)");
         }
 

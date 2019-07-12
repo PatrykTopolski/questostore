@@ -1,12 +1,13 @@
 create table if not exists Classes (
 	id serial PRIMARY KEY NOT NULL,
 	class_id INT,
-	user_id INT
+	user_id INT,
+	class_name VARCHAR(50)
 );
-insert into Classes (class_id, user_id) values (4, 11);
-insert into Classes (class_id, user_id) values (4, 9);
-insert into Classes (class_id, user_id) values (3, 1);
-insert into Classes (class_id, user_id) values (2, 2);
+insert into Classes (class_id, user_id, class_name) values (4, 11, 'progBasics');
+insert into Classes (class_id, user_id, class_name) values (4, 9, 'oop');
+insert into Classes (class_id, user_id, class_name) values (3, 1, 'web');
+insert into Classes (class_id, user_id, class_name) values (2, 2, 'advanced');
 
 
 create table if not exists Level_of_exp (
