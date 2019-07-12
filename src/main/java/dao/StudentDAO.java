@@ -14,7 +14,6 @@ import java.util.List;
 public class StudentDAO implements IStudentDAO {
 
     //this class contains methods to create and update student
-
     // and show his level
 
     //TODO Get DBCreator object to private filed of WallDao class instead of creating it in every method

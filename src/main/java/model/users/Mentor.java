@@ -19,6 +19,16 @@ public class Mentor extends User {
         this.roomID = roomID;
     }
 
+    public Mentor(int id,  String firstName, String lastName, String phoneNum, String email, String address) {
+        setId(id);
+        setFirstName(firstName);
+        setLastName(lastName);
+        setPhoneNum(phoneNum);
+        setEmail(email);
+        setAddress(address);
+
+    }
+
     public Mentor(int id, int roomID){
         super();
         setId(id);

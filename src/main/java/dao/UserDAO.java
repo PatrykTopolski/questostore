@@ -136,7 +136,7 @@ public class UserDAO implements IUserDAO {
             DBCreator creator = new DBCreator();
             Connection connection = creator.connectToDatabase();
             System.out.println("connected");
-            PreparedStatement stm = connection.prepareStatement("select * from users left  join  mentorspersonals on users.id=mentorspersonals.user_id  where id= ? ");
+            PreparedStatement stm = connection.prepareStatement("select * from users left  join  adminpersonals on users.id=adminpersonals.user_id  where id= ? ");
             stm.setInt(1, id);
 
             ResultSet result = stm.executeQuery();
@@ -149,6 +149,7 @@ public class UserDAO implements IUserDAO {
                 System.out.println(login);
                 String password = result.getString("password");
                 String firstName = result.getString("first_name");
+                System.out.println("firstName");
                 String lastName = result.getString("last_name");
                 String phoneNumber = result.getString("phone_number");
                 String email = result.getString("email");
