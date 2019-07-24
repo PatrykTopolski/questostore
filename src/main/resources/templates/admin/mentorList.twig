@@ -12,9 +12,8 @@
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
      <link rel="stylesheet" href="/static/css/listsStyle.css">
 
-
     <link rel="shortcut icon" type="image/png" href="/static/recourses/codecoolThumbnail.png">
-
+    <link rel="stylesheet"type="text/css" href="/static/css/transactions.css">
 </head>
 
 
@@ -23,51 +22,42 @@
         <div class="content">
             <nav>
                 <ul id="navToolBar">
-                  <li><img src="/static/recourses/codecoolLogoprecel.png"></li>
-                  <li><a href="./mentorList.html">Mentors</a></li>
+                  <a href="/admin"><li><img src="/static/recourses/codecoolLogoprecel.png"></li></a>
+                  <li><a href="/admin/mentors">Mentors</a></li>
                   <li><a href="./classes.html">Classes</a></li>
-                  <li><a href="./levelsPage.html">Levels</a></li>
-                  <li style="float:right"> <a href="../login.html">log out</a></li>
+                  <li><a href="/admin/levels">Levels</a></li>
+                  <li style="float:right"> <a href="/login">log out</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    
-
-    
         <div class="usersList">
-            <h4>Mentors List</h4>
+            <h4>Mentors</h4>
         
             <table>
-              <tr class="tableHead">
-                <th>ID</th>
-                <th class="name">Full Name</th>
-                <th>DelButton</th>
-                <th>UpdButton</th>
-                <th>PrfButton</th>
-                <th>StdButton</th>
-              </tr>
-               {% for fullName in listName %}
-              <tr>
 
-                <td>1</td>
-                <td class="name">{{ fullName }}</td>
+               {% for mentor in mentors %}
+              <tr>
+                <td>{{mentor.getId}}</td>
+                <td class="name">{{ mentor.getFirstName }} {{mentor.getLastName}}</td>
                 <td> <input type="button" value="Delete"> </td>
-                <td><button onclick="location.href='./createUpdateMentor.html'" type="button">Update</button></td>
+                <td><button onclick="location.href='/admin/update/{{mentor.getId}}'" type="button">Update</button></td>
                 <td><button onclick="location.href='./profile.html'" type="button">Profile</button></td>
                 <td><button onclick="location.href='./studentList.html'" type="button">Students</button></td>
-
               </tr>
                {% endfor %}
 
-
-              <div class="addButton"> 
-              <button class="inputButton" onclick="location.href='./createUpdateMentor.html'" type="button">Add</button>
-            </div>
-             
-             
             </table>
+              <h3>
+                <div id="buttonContainer">
+                    <button id="inputButton" onclick="location.href='/admin/createMentor'" type="button">Add mentor</button>
+                </div>
+              </h3>
         </div>
+
+         <h1>
+
+         </h1>
 
 </body>

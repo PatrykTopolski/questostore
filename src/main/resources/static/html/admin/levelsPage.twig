@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width">
     <title>Quest Store</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/loginstyle.css">
-    <link rel="shortcut icon" type="image/png" href="../../recourses/codecoolThumbnail.png">
-    <link rel="stylesheet" href="../../css/levelsPage.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/loginstyle.css">
+    <link rel="shortcut icon" type="image/png" href="/static/recourses/codecoolThumbnail.png">
+    <link rel="stylesheet" href="/static/css/levelsPage.css">
 </head>
 
 
@@ -21,10 +21,10 @@
             <nav>
                 <ul id="navToolBar">
 
-                    <li><img src="../../recourses/codecoolLogoprecel.png"></li>
-                    <li><a href="./mentorList.html">Mentors</a></li>
+                    <li><img src="/static/recourses/codecoolLogoprecel.png"></li>
+                    <li><a href="/admin/mentors">Mentors</a></li>
                     <li><a href="./classes.html">Classes</a></li>
-                    <li><a href="./levelsPage.html">Levels</a></li>
+                    <li><a href="/admin/levels">Levels</a></li>
                     <li style="float:right"> <a href="../login.html">log out</a></li>
                 </ul>
             </nav>
@@ -43,36 +43,25 @@
 
                         </tr>
                     </thead>
+                    {% for level in levels%}
                     <tr>
-                        <td>easy</td>
-                        <td>0-5</td>
+                        <td>{{level.getName}}</td>
+                        <td>{{level.getMaxValue}}</td>
                         <td><input type="button" onclick="alert('changed')" value="change">
                             <input type="button" onclick="alert('deleted')" value="delete">
                         </td>
                     </tr>
-                    <tr>
-                        <td>normal</td>
-                        <td>5-20</td>
-                        <td><input type="button" onclick="alert('changed')" value="change">
-                            <input type="button" onclick="alert('deleted')" value="delete">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>hard</td>
-                        <td>20-50</td>
-                        <td><input type="button" onclick="alert('changed')" value="change">
-                            <input type="button" onclick="alert('deleted')" value="delete">
-                        </td>
-                    </tr>
+                    {% endfor %}
+
                 </table>
             </h2>
         </div>
 
         <div class="add-new-level">
             <form>
-                <label for="level-name">Enter new level's name </label>
+                <label for="name">Enter new level's name </label>
                 <input type="text" name="name" id="level-name" value="new level name">
-                <label for="level-range">Enter new level's range </label>
+                <label for="range">Enter new level's range </label>
                 <input type="text" name="range" id="level-range" value="new level range">
                 <input type="button" onclick="alert('added')" value="Add">
             </form>

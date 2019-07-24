@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="../../recourses/codecoolThumbnail.png">
     <title>Quest Store</title>
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
@@ -34,23 +35,22 @@
 
     <section class="items">
         <div class="container">
-            <h2>Artifacts</h2>
+            <h2>Quests</h2>
             <div class="row">
-            {% for artifact in artifactList %}
+            {% for quest in questList %}
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class=item id="item-1">
-                        <div class="item-header"> {{ artifact.name }}
+                        <div class="item-header"> {{ quest.name }}
                             <div class="price">
                                 <span class="coin wrapper">
                                         <!--img src="/coin icon here" /-->
-                                        <span class="coin">{{ artifact.price }}</span>
+                                        <span class="coin"> {{ quest.reward }} </span>
                                 </span>
                             </div>
-                            <input class="buy-button" type="image" src="/static/recourses/shoppingbasket.png" />
                         </div>
                         <img src="/static/recourses/winner.svg" class="img-fluid" alt="winner">
                         <div class="item-description">
-                            {{ artifact.description }}
+                            {{ quest.description }}
                         </div>
                     </div>
                 </div>

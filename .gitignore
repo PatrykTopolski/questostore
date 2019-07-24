@@ -29,5 +29,7 @@ hs_err_pid*
 pom.xml
 */target/**
 
-DBCreator.java
-src/main/java/dao/DBCreator.java
+target/
+
+**/DBCreator.java
+

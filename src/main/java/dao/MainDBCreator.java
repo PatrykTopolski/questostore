@@ -14,18 +14,19 @@ public class MainDBCreator {
          db.connectToDatabase();
          db.executeStatement();
 
+//
+//         UserDAO userDAO = new UserDAO();
+//
+//         User user = userDAO.seeProfile(3);
+//
+//         user.getLogin();
 
-         UserDAO userDAO = new UserDAO();
 
-         User user = userDAO.seeProfile(3);
-
-         user.getLogin();
-
-
-        } catch (SQLException e){
-            e.printStackTrace();
-        } catch (DBException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+//        } catch (DBException e){
+//            e.printStackTrace();
+//        }
     }
 }

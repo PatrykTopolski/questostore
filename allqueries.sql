@@ -1,3 +1,9 @@
+create table if not exists Sessions (
+    id serial PRIMARY KEY NOT NULL,
+    sessionID VARCHAR(50),
+    userID INT
+);
+
 create table if not exists Classes (
 	id serial PRIMARY KEY NOT NULL,
 	class_id INT,
@@ -119,26 +125,27 @@ create table if not exists StudentPersonals (
 	experience_points INT,
 	coolcoins INT
 );
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (18, 'Jobie', 'Yegorovnin', '651-286-8635', 'jyegorovnin0@cmu.edu', '2156 Havey Center', 1, 0, 0);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (19, 'Katleen', 'Top', '418-712-7395', 'ktop1@bloglines.com', '74589 Aberg Pass', 1, 50, 50);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (20, 'Elliot', 'O''Cahsedy', '834-924-4987', 'eocahsedy2@photobucket.com', '70 Farmco Plaza', 1, 100, 20);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (21, 'Ariella', 'Woodstock', '434-612-4875', 'awoodstock3@columbia.edu', '5 Continental Junction', 1, 200, 120);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (22, 'Rosco', 'Prendeville', '819-641-8824', 'rprendeville4@examiner.com', '29495 Donald Road', 1, 60, 50);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (23, 'Bradford', 'Clapton', '957-714-2073', 'bclapton5@cornell.edu', '71528 Mariners Cove Parkway', 1, 70, 20);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (24, 'Deeyn', 'Golsworthy', '394-354-5375', 'dgolsworthy6@t-online.de', '0954 Westport Court', 1, 30, 30);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (25, 'Chariot', 'Bonniface', '504-548-8290', 'cbonniface7@imdb.com', '9 Ilene Avenue', 1, 10, 10);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (26, 'Krista', 'Scammell', '763-803-8534', 'kscammell8@cbc.ca', '2982 Sommers Way', 1, 20, 10);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (27, 'Mort', 'Shurman', '951-706-9791', 'mshurman9@reverbnation.com', '1601 Talisman Pass', 2, 30, 10);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (28, 'Brose', 'Bawden', '994-714-0174', 'bbawdena@time.com', '85 Ilene Pass', 2, 20, 20);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (29, 'Ewan', 'Compford', '333-109-7908', 'ecompfordb@webs.com', '26 Bayside Court', 2, 280, 60);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (30, 'Emera', 'Fagence', '867-936-0441', 'efagencec@opera.com', '515 Thompson Park', 2, 100, 90);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (31, 'Jobina', 'Lindemann', '823-929-9152', 'jlindemannd@techcrunch.com', '5 Sauthoff Crossing', 3, 230, 170);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (32, 'Brnaby', 'Oldland', '177-399-0453', 'boldlande@amazon.co.jp', '6092 Green Ridge Point', 3, 320, 50);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (33, 'Stephani', 'Ousbie', '329-307-7611', 'sousbief@dmoz.org', '73031 Drewry Alley', 3, 120, 30);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (34, 'Cory', 'Gunter', '182-339-4679', 'cgunterg@ask.com', '211 East Drive', 3, 100, 100);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (35, 'Meridith', 'Treweke', '247-980-0278', 'mtrewekeh@over-blog.com', '98 Corben Plaza', 3, 100, 20);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (36, 'Andeee', 'Cottel', '723-435-2090', 'acotteli@umich.edu', '49 Cody Parkway', 4, 220, 220);
-insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (37, 'Johan', 'de Broke', '747-963-4995', 'jdebrokej@delicious.com', '02041 Pearson Alley', 4, 180, 0);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (18, 'Jobie', 'Yegorovnin', '651-286-8635', 'jyegorovnin0@cmu.edu', '2156 Havey Center', 500, 1, 300);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (19, 'Katleen', 'Top', '418-712-7395', 'ktop1@bloglines.com', '74589 Aberg Pass', 50, 1, 50);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (20, 'Elliot', 'O''Cahsedy', '834-924-4987', 'eocahsedy2@photobucket.com', '70 Farmco Plaza', 100, 1, 20);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (21, 'Ariella', 'Woodstock', '434-612-4875', 'awoodstock3@columbia.edu', '5 Continental Junction', 200, 1, 120);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (22, 'Rosco', 'Prendeville', '819-641-8824', 'rprendeville4@examiner.com', '29495 Donald Road', 60, 1, 50);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (23, 'Bradford', 'Clapton', '957-714-2073', 'bclapton5@cornell.edu', '71528 Mariners Cove Parkway', 70, 1, 20);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (24, 'Deeyn', 'Golsworthy', '394-354-5375', 'dgolsworthy6@t-online.de', '0954 Westport Court', 30, 1, 30);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (25, 'Chariot', 'Bonniface', '504-548-8290', 'cbonniface7@imdb.com', '9 Ilene Avenue', 10, 1, 10);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (26, 'Krista', 'Scammell', '763-803-8534', 'kscammell8@cbc.ca', '2982 Sommers Way', 20, 1, 10);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (27, 'Mort', 'Shurman', '951-706-9791', 'mshurman9@reverbnation.com', '1601 Talisman Pass', 30, 1, 10);
+
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (28, 'Brose', 'Bawden', '994-714-0174', 'bbawdena@time.com', '85 Ilene Pass', 20, 2, 20);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (29, 'Ewan', 'Compford', '333-109-7908', 'ecompfordb@webs.com', '26 Bayside Court', 280, 2, 60);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (30, 'Emera', 'Fagence', '867-936-0441', 'efagencec@opera.com', '515 Thompson Park', 100, 2, 90);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (31, 'Jobina', 'Lindemann', '823-929-9152', 'jlindemannd@techcrunch.com', '5 Sauthoff Crossing', 230, 3, 170);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (32, 'Brnaby', 'Oldland', '177-399-0453', 'boldlande@amazon.co.jp', '6092 Green Ridge Point', 320, 3, 50);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (33, 'Stephani', 'Ousbie', '329-307-7611', 'sousbief@dmoz.org', '73031 Drewry Alley', 120, 3, 30);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (34, 'Cory', 'Gunter', '182-339-4679', 'cgunterg@ask.com', '211 East Drive', 100, 3, 100);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (35, 'Meridith', 'Treweke', '247-980-0278', 'mtrewekeh@over-blog.com', '98 Corben Plaza', 100, 3, 20);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (36, 'Andeee', 'Cottel', '723-435-2090', 'acotteli@umich.edu', '49 Cody Parkway', 220, 4, 220);
+insert into StudentPersonals (user_id, first_name, last_name, phone_number, email, address, experience_points, class_id, coolcoins) values (37, 'Johan', 'de Broke', '747-963-4995', 'jdebrokej@delicious.com', '02041 Pearson Alley', 180, 4, 0);
 
 
 create table if not exists Users (
@@ -164,7 +171,7 @@ insert into Users (login, password, usertype) values ('ascourfieldd', '8lb7DnRJP
 insert into Users (login, password, usertype) values ('afairleme', 'dvclZVAnbE5', 'mentor');
 insert into Users (login, password, usertype) values ('jbowmenf', 'gNph5ydnm3', 'mentor');
 insert into Users (login, password, usertype) values ('blintotg', 'iD49MxOUx8a', 'mentor');
-insert into Users (login, password, usertype) values ('cdibbeh', 'i18J9YIgYYM', 'student');
+insert into Users (login, password, usertype) values ('user', 'test', 'student');
 insert into Users (login, password, usertype) values ('tryami', 'lkfsKpZoE', 'student');
 insert into Users (login, password, usertype) values ('jbucklej', 'CNUAhKX8J', 'student');
 insert into Users (login, password, usertype) values ('fhaddockk', 'CCSrbBRMGDw3', 'student');
@@ -192,6 +199,9 @@ create table if not exists Users_artifacts (
 	artifact_id INT
 );
 insert into Users_artifacts (user_id, artifact_id) values (18, 4);
+insert into Users_artifacts (user_id, artifact_id) values (18, 2);
+insert into Users_artifacts (user_id, artifact_id) values (18, 3);
+insert into Users_artifacts (user_id, artifact_id) values (18, 5);
 insert into Users_artifacts (user_id, artifact_id) values (19, 10);
 insert into Users_artifacts (user_id, artifact_id) values (24, 5);
 insert into Users_artifacts (user_id, artifact_id) values (27, 5);
@@ -209,6 +219,7 @@ create table if not exists Users_quests (
 	quest_id INT
 );
 insert into Users_quests (user_id, quest_id) values (18, 7);
+insert into Users_quests (user_id, quest_id) values (18, 6);
 insert into Users_quests (user_id, quest_id) values (25, 8);
 insert into Users_quests (user_id, quest_id) values (36, 3);
 insert into Users_quests (user_id, quest_id) values (22, 10);
