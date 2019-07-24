@@ -14,6 +14,6 @@ public interface IMentorDAO {
     void updateMentorByFullName(Mentor mentor) throws DBException;
     Mentor getMentorById(int id) throws SQLException, DBException;
     Mentor getMentorByFullName(String firstName, String lastName) throws DBException;
-    void assignMentorToRoom(Mentor mentor) throws DBException;
+    void assignMentorToRoom(int id, String className) throws DBException;
 
 }

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MentorDAO implements IMentorDAO {
@@ -180,23 +181,45 @@ public class MentorDAO implements IMentorDAO {
     }
 
     //todo
-    public void assignMentorToRoom(Mentor mentor) throws DBException {
+    public void assignMentorToRoom(int id, String className) throws DBException {
         try {
+
+
+
+            Mentor mentor = getMentorById(id);
+//            mentor.getRoomID();
+
+            PreparedStatement stm = connection.prepareStatement("SELECT user_id FROM classes");
+            PreparedStatement stx = connection.prepareStatement("UPDATE  classes as c SET c.user_id = ? WHERE c.user_id = 0 AND c.class_name = ? ");
+
+            ResultSet result = stm.executeQuery();
+            List<Integer> listOfUserIds = new LinkedList<>();
+
+            while (result.next()) {
+                int userId = result.getInt("user_id");
+                listOfUserIds.add(userId);
+            }
+
+
+
+
+
+
+            if(true){
+
+            }
+
+
 //            UPDATE vehicles_vehicle AS v
 //            SET price = s.price_per_vehicle
 //            FROM shipments_shipment AS s
 //            WHERE v.shipment_id = s.id
             String quer = "UPDATE mentorsPersonals SET first_name = ?, last_name = ?, phone_number = ?, email = ?, adress = ? WHERE id = ?";
             String query = "UPDATE mentorsPersonals as m, classes as c SET m.first_name = ?, m.last_name = ?, m.phone_number = ?, m.email = ?, m.adress = ?, c.user_id = ? WHERE m.user_id = c.mentor_id";
-            PreparedStatement stm = connection.prepareStatement("SELECT * FROM mentorspersonals LEFT JOIN classes ON " + "mentorspersonals.user_id = classes.user_id WHERE mentorspersonals.user_id = ?;");
+            PreparedStatement st = connection.prepareStatement("SELECT * FROM mentorspersonals LEFT JOIN classes ON " + "mentorspersonals.user_id = classes.user_id WHERE mentorspersonals.user_id = ?;");
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1, mentor.getFirstName());
-            statement.setString(2, mentor.getLastName());
-            statement.setString(3, mentor.getPhoneNum());
-            statement.setString(4, mentor.getEmail());
-            statement.setString(5, mentor.getAddress());
-            statement.setInt(6, mentor.getId());
+
 
             statement.executeUpdate();
             connection.close();

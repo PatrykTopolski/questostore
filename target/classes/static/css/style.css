@@ -1,6 +1,5 @@
 body {
     background: url(../recourses/background.jpg)no-repeat center center fixed;
-
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -54,7 +53,7 @@ nav img {
     
   #navToolBar li {
     float: left;
-    border-right:1px solid #bbb;
+    border-right: 1px solid #bbb;
   }
   
   #navToolBar li:last-child {

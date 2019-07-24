@@ -1,4 +1,4 @@
-table#transactions-table{
+#transactions-table{
     width:70%;
     margin-left:15%;
     margin-right:15%;
@@ -20,7 +20,7 @@ table#transactions-table{
     border-bottom:1px solid #dddddd;
 }
 
-#transactions-table thead tr{
+#transactions-table tablehead tr{
     background-color: #303D44;
     font-weight: bold;
 }

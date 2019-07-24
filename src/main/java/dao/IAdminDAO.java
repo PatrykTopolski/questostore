@@ -1,6 +1,8 @@
 package dao;
 
 
+import java.util.List;
+
 public interface IAdminDAO{
 
     /*this interface contains methods which are left after splitting everything into other interfaces -
@@ -8,5 +10,6 @@ public interface IAdminDAO{
     both are still NOT implemented in AdminDAO*/
 
     void addLevel();
-    void createNewClass();
+    void createNewClass(String className) throws DBException;
+    List<String> getAllClasses() throws DBException;
 }

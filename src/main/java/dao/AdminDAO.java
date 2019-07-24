@@ -1,6 +1,7 @@
 package dao;
 
 import model.users.Student;
+import model.users.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,8 +24,44 @@ public class AdminDAO implements IAdminDAO {
 
     }
 
+    private int getClassId() throws DBException {
+
+        String query = "SELECT class_id + 1 FROM classes ORDER BY my_id DESC LIMIT 1";
+        try {
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet rs = statement.executeQuery();
+            int result = rs.getInt("class_name");
+            dbCreator.connectToDatabase().close();
+            return result;
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in createNewClass()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in createNewClass()");
+        }
+
+    }
+
     //todo
-    public void createNewClass() {
+    public void createNewClass(String className) throws DBException {
+
+        String query = "INSERT INTO classes(class_id, user_id, class_name) VALUES (?,?,?)";
+
+        try {
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, getClassId());
+            statement.setInt(2, 0);
+            statement.setString(3, className);
+            statement.executeUpdate();
+            dbCreator.connectToDatabase().close();
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in createNewClass()");
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in createNewClass()");
+        }
 
     }
 
