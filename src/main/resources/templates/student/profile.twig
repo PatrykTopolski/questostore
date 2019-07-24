@@ -19,12 +19,11 @@
         <div class="content">
             <nav>
                 <ul id="navToolBar">
-                    <li><img src="static/recourses/codecoolLogoprecel.png"></li>
-                    <li><a href="profile.html">Profile</a></li>
-                    <li><a href="artifacts.html">Store</a></li>
-                    <li><a href="quests.html">Quests</a></li>
-                    <li><a href="transactions.html">Transactions</a></li>
-                    <li style="float:right"> <a href="../login.html">log out</a></li>
+                    <li><img src="/static/recourses/codecoolLogoprecel.png"></li>
+                    <li><a href="/student">Profile</a></li>
+                    <li><a href="/student/artifacts">Store</a></li>
+                    <li><a href="/student/quests">Quests</a></li>
+                    <li style="float:right"> <a href="/login">log out</a></li>
                 </ul>
             </nav>
         </div>
@@ -78,7 +77,7 @@
                         </tr>
                         <tr>
                             <td class="profile-setting">personal mentor:</td>
-                            <td class="user-entry"><a href="#">Not yet defined</a></td>
+                            <td class="user-entry"><a href="#">not implemented</a></td>
                         </tr>
                     </table>
             </div>
@@ -89,16 +88,38 @@
         <table class="wallet-content">
             <tr>
                 <td>AMOUNT OF COINS:</td>
-                <td>Any number</td>
+                <td>{{ coolcoins }}</td>
             </tr>
             <tr>
                 <td>TOTAL COINS GATHERED:</td>
-                <td>Bigger number or equal</td>
+                <td>{{ experience_points }}</td>
             </tr>
         </table>
     </div>
     <div class="profileContent">
-        <h1>not yet available</h1>
+        <h1>Quests completed: </h1>
+            <div class="row">
+            {% for quest in completedQuests %}
+                <div class="col-12 col-md-6 col-lg-4">
+                        <div class = "item">
+                            <div class="item-name"> {{ quest.name }} </div>
+                            <div class="item-price"> {{ quest.reward }} </div>
+                         </div>
+                </div>
+            {% endfor %}
+            </div>
+
+        <h1>Artifacts purchased: </h1>
+            <div class="row">
+            {% for artifact in purchasedArtifacts %}
+                <div class="col-12 col-md-6 col-lg-4">
+                        <div class = "item">
+                            <div class="item-name"> {{ artifact.name }} </div>
+                            <div class="item-price"> {{ artifact.price }} </div>
+                         </div>
+                </div>
+            {% endfor %}
+            </div>
     </div>
     <footer></footer>
 </body>

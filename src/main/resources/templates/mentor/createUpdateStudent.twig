@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Quest Store</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/createUpdateStyle.css">
+    <link rel="shortcut icon" type="image/png" href="/static/recourses/codecoolThumbnail.png">
+</head>
+
+
+<body>
+    <header>
+        <div class="content">
+            <nav>
+                <ul id="navToolBar">
+                    <li><img src="/static/recourses/codecoolLogoprecel.png"></li>
+                    <li><a href="profileMentor.html">Profile</a></li>
+                    <li><a href="artifactsMentor.html">Store</a></li>
+                    <li><a href="questsMentor.html">Quests</a></li>
+                    <li><a href="studentList.html">Students</a></li>
+                    <li style="float:right"> <a href="/login">log out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <form method="POST">
+    <div class="createUpdateForm">
+            <div class="flexItem">
+                <p class="flexTxt">Write name</p>
+                <input type="text" name="name" placeholder="name">
+            </div>
+            <div class="flexItem">
+                <p>Write surname</p>
+                <input type="text" name="surname" placeholder="Surname">
+            </div>
+            <div class="flexItem">
+                <p>Write login</p>
+                <input type="text" name="login" placeholder="Login">
+            </div>
+            <div class="flexItem">
+                <p>Write password</p>
+                <input type="text" name="password" placeholder="Password">
+            </div>
+            <div class="flexItem">
+                <p>Write email</p>
+                <input type="text" name="email" placeholder="Email">
+            </div>
+            <div class="flexItem">
+                <p>Write adress</p>
+                <input type="text" name="adress" placeholder="Adress">
+            </div>
+            <div class="flexItem">
+                <p>Write phone</p>
+                <input type="text" name="phone" placeholder="Phone">
+
+
+
+            <div class="flexItem">
+                <p>Select student's level</p>
+                <select id="levelSelect" name="levels">
+                    <option selected value="easy">Begginer</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Advanced</option>
+                </select><br>
+            </div>
+
+
+            <input type="submit" name="submit" value="submit">
+
+
+        </div>
+
+        <section id="Field">
+            <div class="content">
+                <h2></h2>
+            </div>
+        </section>
+
+
+
+
+        <!-- FOOTER -->
+        <footer>
+        </footer>
+
+
+</body>

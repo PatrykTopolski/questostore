@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width">
+    <title>Quest Store</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/listsStyle.css">
+    <link rel="shortcut icon" type="image/png" href="static/recourses/codecoolThumbnail.png">
+
+    <link rel="stylesheet" href="/static/css/transactions.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="content">
+            <nav>
+                <ul id="navToolBar">
+                    <li><img src="/static/recourses/codecoolLogoprecel.png"></li>
+                    <li><a href="profileMentor.html">Profile</a></li>
+                    <li><a href="artifactsMentor.html">Store</a></li>
+                    <li><a href="questsMentor.html">Quests</a></li>
+                    <li><a href="studentList.html">Students</a></li>
+                    <li style="float:right"> <a href="/login">log out</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    
+        <div class="usersList">
+            <h4>Students List</h4>
+        
+            <table>
+
+               {% for user in listName %}
+              <tr>
+                <td>{{user.id}}</td>
+                <td class="name">{{user.firstName}} {{user.LastName}}</td>
+                <td> <input type="button" id={{user.id}} value="Delete"> </td>
+                <td>
+                    <a href="/mentor/addStudent/{{user.id}}">
+                        <input type="submit" value="Update">
+                    </a>
+                 </td>
+              </tr>
+               {% endfor %}
+
+
+            </table>
+
+             <h3>
+                <div id="buttonContainer">
+                    <button id="inputButton" onclick="location.href='/mentor/addStudent'" type="button">Add student</button>
+                </div>
+             </h3>
+        </div>
+    
+    <h1>
+
+    </h1>
+
+
+
+    <!-- FOOTER -->
+    <footer>
+    </footer>
+
+</body>

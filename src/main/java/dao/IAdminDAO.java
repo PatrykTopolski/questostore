@@ -1,6 +1,11 @@
 package dao;
 
 
+import model.items.Level;
+
+import java.sql.SQLException;
+import java.util.List;
+
 public interface IAdminDAO{
 
     /*this interface contains methods which are left after splitting everything into other interfaces -
@@ -9,4 +14,6 @@ public interface IAdminDAO{
 
     void addLevel();
     void createNewClass();
+
+    List<Level> getLevelList() throws SQLException;
 }

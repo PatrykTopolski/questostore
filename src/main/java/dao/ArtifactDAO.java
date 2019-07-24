@@ -1,6 +1,7 @@
 package dao;
 
 import model.items.Artifact;
+import model.items.Quest;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class ArtifactDAO implements IArtifactDAO {
     private Connection connection;
     private DBCreator dbCreator;
 
-    ArtifactDAO() {
+    public ArtifactDAO() {
         dbCreator = new DBCreator();
     }
 
@@ -58,6 +59,66 @@ public class ArtifactDAO implements IArtifactDAO {
     }
 
 
+
+    public Artifact getArtifact(int id) throws DBException {
+
+        try {
+            String query = "select * from artifacts where id = ?";
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+
+            ResultSet result = statement.executeQuery();
+            connection.close();
+
+            if (result.next()) {
+                id = result.getInt("id");
+                String name = result.getString("artifact_name");
+                String description = result.getString("artifact_description");
+                String category = result.getString("artifact_category");
+                int reward = result.getInt("artifact_price");
+                Boolean availability = result.getBoolean("artifact_availability");
+                return new Artifact(id, name, description, category, reward, availability);
+            }
+
+            throw new DBException("No quest found in DB with id = " + id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DBException("SQLException occurred in getQuest(int id)");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in getQuest(int id)");
+        }
+    }
+
+    public List<Artifact> getUsersArtifacts(int id) throws DBException {
+        try {
+            String query = "select * from  users_artifacts where user_id = ? ";
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+
+            ResultSet result = statement.executeQuery();
+            connection.close();
+
+            List<Artifact> usersArtifacts = new ArrayList<>();
+            while (result.next()) {
+                id = result.getInt("artifact_id");
+                usersArtifacts.add(getArtifact(id));
+            }
+
+
+            return usersArtifacts;
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in getUsersQuests(int id)");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DBException("Unidentified exception occurred in getUsersQuests(int id)");
+        }
+
+    }
     public void createArtifact(Artifact artifact) throws DBException {
         String query = "INSERT INTO Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability)" +
                 " VALUES (?,?,?,?,?)";

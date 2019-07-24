@@ -1,6 +1,7 @@
 package dao;
 
 import model.items.Quest;
+import model.users.Mentor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,8 +17,66 @@ public class QuestDAO implements IQuestDAO {
         dbCreator = new DBCreator();
     }
 
+    public Quest getQuest(int id) throws DBException {
+
+        try {
+            String query = "select * from quests where id = ?";
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+
+            ResultSet result = statement.executeQuery();
+            connection.close();
+
+            if (result.next()) {
+                id = result.getInt("id");
+                String name = result.getString("quest_name");
+                String description = result.getString("quest_description");
+                String category = result.getString("quest_category");
+                int reward = result.getInt("quest_award");
+                return new Quest(id, name, description, category, reward);
+            }
+
+            throw new DBException("No quest found in DB with id = " + id);
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in getQuest(int id)");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in getQuest(int id)");
+        }
+    }
+
+    public List<Quest> getUsersQuests(int id) throws DBException {
+        try {
+            String query = "select * from  users_quests where user_id = ? ";
+            connection = dbCreator.connectToDatabase();
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setInt(1, id);
+
+            ResultSet result = statement.executeQuery();
+            connection.close();
+
+            List<Quest> usersQuests = new ArrayList<>();
+            while (result.next()) {
+                id = result.getInt("quest_id");
+                usersQuests.add(getQuest(id));
+            }
+
+
+            return usersQuests;
+
+        } catch (SQLException e) {
+            throw new DBException("SQLException occurred in getUsersQuests(int id)");
+
+        } catch (Exception e) {
+            throw new DBException("Unidentified exception occurred in getUsersQuests(int id)");
+        }
+
+    }
+
+
     public List<Quest> getQuestsList() throws DBException {
-        List<Quest> allQuests = new ArrayList<Quest>();
+        List<Quest> allQuests = new ArrayList<>();
         try {
             Connection con = dbCreator.connectToDatabase();
             con.setAutoCommit(false);

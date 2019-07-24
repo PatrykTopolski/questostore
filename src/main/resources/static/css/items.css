@@ -42,3 +42,8 @@ h2 {
     align-items: center;
     box-shadow: 2px 3px 6px #080B0C;
 }
+
+.buy-button {
+max-width:15%;
+max-height:15%;
+}

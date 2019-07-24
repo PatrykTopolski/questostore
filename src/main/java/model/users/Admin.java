@@ -15,6 +15,13 @@ public class Admin extends User {
         this.listOfLevels = listOfLevels;
     }
 
+    public Admin (int user_id, String login, String password, String userType){
+        setId(user_id);
+        setLogin(login);
+        setPassword(password);
+        setUserType(userType);
+    }
+
 
     public Admin(int id, List<Mentor> mentorList, List<Student> studentList, List<Integer> listOfLevels) {
         setId(id);

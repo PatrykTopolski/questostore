@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width">
     <title>Quest Store</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/createUpdateStyle.css">
-    <link rel="shortcut icon" type="image/png" href="../../recourses/codecoolThumbnail.png">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/createUpdateStyle.css">
+    <link rel="shortcut icon" type="image/png" href="/static/recourses/codecoolThumbnail.png">
 </head>
 
 
@@ -19,43 +19,44 @@
         <div class="content">
             <nav>
                 <ul id="navToolBar">
-                    <li><img src="../../recourses/codecoolLogoprecel.png"></li>
-                    <li><a href="./mentorList.html">Mentors</a></li>
-                    <li><a href="./classes.html">Classes</a></li>
-                    <li><a href="./levelsPage.html">Levels</a></li>
-                    <li style="float:right"> <a href="../login.html">log out</a></li>
+                     <a href="/admin"><li><img src="/static/recourses/codecoolLogoprecel.png"></li></a>
+                      <li><a href="/admin/mentors">Mentors</a></li>
+                      <li><a href="./classes.html">Classes</a></li>
+                      <li><a href="/admin/levels">Levels</a></li>
+                      <li style="float:right"> <a href="/login">log out</a></li>
                 </ul>
             </nav>
         </div>
     </header>
+    <form method="POST">
     <div class="createUpdateForm">
         <div class="flexItem">
             <p>Write name</p>
-            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="name" value="{{firstName}}">
         </div>
         <div class="flexItem">
             <p>Write surname</p>
-            <input type="text" name="surname" placeholder="Surame">
+            <input type="text" name="surname" value="{{lastName}}">
         </div>
         <div class="flexItem">
             <p>Write login</p>
-            <input type="text" name="login" placeholder="Login">
+            <input type="text" name="login" value="{{login}}">
         </div>
         <div class="flexItem">
             <p>Write password</p>
-            <input type="text" name="password" placeholder="Password">
+            <input type="text" name="password" value="{{password}}">
         </div>
         <div class="flexItem">
             <p>Write email</p>
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="email" value="{{email}}">
         </div>
         <div class="flexItem">
             <p>Write adress</p>
-            <input type="text" name="adress" placeholder="Adress">
+            <input type="text" name="adress" value="{{address}}">
         </div>
         <div class="flexItem">
             <p>Write phone</p>
-            <input type="text" name="phone" placeholder="Phone">
+            <input type="text" name="phone" value="{{phone}}">
         </div>
         <div class="flexItem">
             <p>Select mentor's class</p>

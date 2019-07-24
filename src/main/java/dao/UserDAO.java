@@ -1,11 +1,14 @@
 package dao;
 
+import model.items.Artifact;
+import model.items.Quest;
 import model.users.Admin;
 import model.users.Student;
 import model.users.Mentor;
 import model.users.User;
 
 import java.sql.*;
+import java.util.List;
 
 
 public class UserDAO implements IUserDAO {
@@ -35,7 +38,7 @@ public class UserDAO implements IUserDAO {
                 System.out.println("i am student");
                 return getFullStudentObject(id);
             } else if (userType.equals(("mentor"))) {
-                System.out.println("im mentor");
+                System.out.println("im mentor user dao");
                 return getFullMentor(id);
             } else if (userType.equals("admin")) {
                 System.out.println("i am admin");
@@ -46,6 +49,7 @@ public class UserDAO implements IUserDAO {
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in seeProfile()");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new DBException("Unidentified exception occurred in seeProfile()");
 
         }
@@ -62,7 +66,6 @@ public class UserDAO implements IUserDAO {
         try {
             DBCreator creator = new DBCreator();
             Connection connection = creator.connectToDatabase();
-            System.out.println("connected");
             PreparedStatement stm = connection.prepareStatement("select * from users left  join  studentpersonals on users.id=studentpersonals.user_id  where id= ? ");
             stm.setInt(1, id);
 
@@ -83,19 +86,26 @@ public class UserDAO implements IUserDAO {
                 int classID = result.getInt("class_id");
                 int experiencePoints = result.getInt("experience_points");
                 int coolcoins = result.getInt("coolcoins");
+                QuestDAO questDAO = new QuestDAO();
+                ArtifactDAO artifactDAO = new ArtifactDAO();
+                List<Quest> questList = questDAO.getUsersQuests(user_id);
+                List<Artifact> artifactList = artifactDAO.getUsersArtifacts(user_id);
 
-                student = new Student(user_id, login, password, firstName, lastName, phoneNumber, email, address, classID, experiencePoints, coolcoins);
+                student = new Student(user_id, login, password, firstName, lastName, phoneNumber, email, address, "student", coolcoins, classID, questList, artifactList, experiencePoints);
+
                 return student;
             }
-            throw new DBException("No student with id: " + id);
+            return null;
+            //throw new DBException("No student with id: " + id);
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in seeProfile()");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new DBException("Unidentified exception occurred in seeProfile()");
         }
     }
 
-    private Mentor getFullMentor(int id) throws DBException {
+    public Mentor getFullMentor(int id) throws DBException {
         try {
             // this method do the same as methods in mentor class?
             // getMentorById and getMentorByFullName?
@@ -112,7 +122,7 @@ public class UserDAO implements IUserDAO {
                 int user_id = result.getInt("id");
 
                 String login = result.getString(("login"));
-                System.out.println(login);
+                System.out.println("mentor's login" + login);
                 String password = result.getString("password");
                 String firstName = result.getString("first_name");
                 String lastName = result.getString("last_name");
