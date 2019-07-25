@@ -25,8 +25,8 @@ insert into Level_of_exp (name, max_value) values ('normal', 60);
 insert into Level_of_exp (name, max_value) values ('hard', 90);
 
 
-create table if not exists AdminPersonals (
-	user_id INT,
+create table if not exists AdminPersonals(
+	user_id INT primary key ,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	phone_number TEXT,
@@ -38,7 +38,7 @@ insert into AdminPersonals (user_id, first_name, last_name, phone_number, email,
 
 
 create table if not exists MentorsPersonals (
-	user_id INT,
+	user_id INT primary key ,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	phone_number TEXT,
@@ -114,7 +114,7 @@ insert into Quests (quest_name, quest_category, quest_description, quest_award) 
 
 
 create table if not exists StudentPersonals (
-	user_id INT,
+	user_id INT primary key ,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	phone_number TEXT,
