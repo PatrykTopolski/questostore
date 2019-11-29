@@ -9,8 +9,6 @@ import java.util.Map;
 
 
 public class WalletDAO implements IWalletDAO {
-    // this class contains methods to process wallet and purchase artifacts
-
     private DBCreator dbCreator;
 
     public WalletDAO() {
@@ -54,7 +52,6 @@ public class WalletDAO implements IWalletDAO {
                 return resultMap;
             }
             throw new DBException("No students found");
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in seeStudentsWallet()");
         } catch (Exception e) {
@@ -77,20 +74,17 @@ public class WalletDAO implements IWalletDAO {
             DBCreator dbCreator = new DBCreator();
             Connection connection = dbCreator.connectToDatabase();
             int coolcoins = showWallet(userID);
-
             int artifactCost = getArtifactCost(artifactID);
             int restCoins = coolcoins - artifactCost;
             PreparedStatement stm = connection.prepareStatement("update  studentpersonals set coolcoins = ? where user_id = ?");
             stm.setInt(1, restCoins);
             stm.setInt(2, userID);
             stm.executeUpdate();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateMoneyAmount()");
         } catch (Exception e) {
             throw new DBException("Unidentified exception updateMoneyAmount()");
         }
-
     }
 
     private void addArtifactToItems(int userID, int artifactID) throws DBException {
@@ -101,7 +95,6 @@ public class WalletDAO implements IWalletDAO {
             stm.setInt(1, userID);
             stm.setInt(2, artifactID);
             stm.executeUpdate();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in addArtifactToItems()");
         } catch (Exception e) {
@@ -128,12 +121,10 @@ public class WalletDAO implements IWalletDAO {
             }
             connection.close();
             return artifactCost;
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getArtifactCost()");
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getArtifactCost()");
         }
     }
-
 }

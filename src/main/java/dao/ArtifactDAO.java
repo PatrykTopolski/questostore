@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ArtifactDAO implements IArtifactDAO {
-    //this class contains methods to process artifacts(show, create, update)
-
     private Connection connection;
     private DBCreator dbCreator;
 
@@ -20,7 +18,6 @@ public class ArtifactDAO implements IArtifactDAO {
         try {
             List<Artifact> allArtifacts = new ArrayList();
             Connection con = dbCreator.connectToDatabase();
-
             con.setAutoCommit(false);
             Statement stmt = con.createStatement();
             ResultSet resultSet = stmt.executeQuery("SELECT * FROM artifacts ORDER BY id;");
@@ -39,14 +36,11 @@ public class ArtifactDAO implements IArtifactDAO {
             stmt.close();
             con.close();
             return allArtifacts;
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getStudents(int roomId))");
-
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getStudents(int roomId)");
         }
-
     }
 
     public void addUserArtifact(int userID, int artifactID) throws DBException {
@@ -58,7 +52,6 @@ public class ArtifactDAO implements IArtifactDAO {
             statement.setInt(2, userID);
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in addUserArtifact");
 
@@ -66,21 +59,13 @@ public class ArtifactDAO implements IArtifactDAO {
             throw new DBException("Unidentified exception occurred in addUserArtifact");
         }
     }
-    //todo
-    public void addArtifactCategory() {
-
-    }
-
-
 
     public Artifact getArtifact(int id) throws DBException {
-
         try {
             String query = "select * from artifacts where id = ?";
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-
             ResultSet result = statement.executeQuery();
             connection.close();
 
@@ -93,12 +78,10 @@ public class ArtifactDAO implements IArtifactDAO {
                 Boolean availability = result.getBoolean("artifact_availability");
                 return new Artifact(id, name, description, category, reward, availability);
             }
-
             throw new DBException("No quest found in DB with id = " + id);
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DBException("SQLException occurred in getQuest(int id)");
-
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getQuest(int id)");
         }
@@ -110,17 +93,15 @@ public class ArtifactDAO implements IArtifactDAO {
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-
             ResultSet result = statement.executeQuery();
             connection.close();
-
             List<Artifact> usersArtifacts = new ArrayList<>();
+
             while (result.next()) {
                 id = result.getInt("artifact_id");
                 usersArtifacts.add(getArtifact(id));
             }
             return usersArtifacts;
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getUsersQuests(int id)");
 
@@ -128,24 +109,21 @@ public class ArtifactDAO implements IArtifactDAO {
             e.printStackTrace();
             throw new DBException("Unidentified exception occurred in getUsersQuests(int id)");
         }
-
     }
+
     public void createArtifact(Artifact artifact) throws DBException {
         String query = "INSERT INTO Artifacts (artifact_name, artifact_category, artifact_description, artifact_price, artifact_availability)" +
                 " VALUES (?,?,?,?,?)";
         try {
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
-
             statement.setString(1, artifact.getName());
             statement.setString(2, artifact.getCategory());
             statement.setString(3, artifact.getDescription());
             statement.setInt(4, artifact.getPrice());
             statement.setBoolean(5, artifact.isAvailability());
-
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in createArtifact()");
 
@@ -174,7 +152,6 @@ public class ArtifactDAO implements IArtifactDAO {
     public void markBoughtArtifacts(int studentId, int questId) throws DBException {
         DBCreator dbCreator = new DBCreator();
         try {
-
             Connection connection = dbCreator.connectToDatabase();
             PreparedStatement stm = connection.prepareStatement("INSERT INTO users_quests (user_id, quest_id) VALUES (?, ?)");
             stm.setInt(1, studentId);
@@ -186,8 +163,6 @@ public class ArtifactDAO implements IArtifactDAO {
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in updateArtifact()");
         }
-
-
     }
 
     public List<Artifact> getBoughtArtifactsList(int userId) throws DBException {
@@ -210,7 +185,6 @@ public class ArtifactDAO implements IArtifactDAO {
                 String category = rs.getString("artifact_category");
                 int price = rs.getInt("artifact_price");
                 Artifact nextArtifact = new Artifact(id, name, category, price, description);
-
                 boughtArtifacts.add(nextArtifact);
             }
             stmt.close();
@@ -218,10 +192,8 @@ public class ArtifactDAO implements IArtifactDAO {
             return boughtArtifacts;
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getBoughtArtifactsList()");
-
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getBoughtArtifactsList()");
         }
-
     }
 }

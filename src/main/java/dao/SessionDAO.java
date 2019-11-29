@@ -24,7 +24,6 @@ public class SessionDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DBException("SQLException occured in getMentor(int id)");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occured in getMentor(int id)");
         }
@@ -38,13 +37,10 @@ public class SessionDAO {
             stm.setInt(2, userId);
             stm.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occured in getMentor(int id)");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occured in getMentor(int id)");
         }
     }
-
 }

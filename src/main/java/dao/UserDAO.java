@@ -12,8 +12,6 @@ import java.util.List;
 
 
 public class UserDAO implements IUserDAO {
-    //this class contains methods which allow to see user's profile
-
     DBCreator dbCreator;
 
     public UserDAO() {
@@ -30,7 +28,6 @@ public class UserDAO implements IUserDAO {
             if (result.next()) {
                 userType = result.getString("usertype");
             }
-
             if (userType.equals("student")) {
                 return getFullStudentObject(id);
             } else if (userType.equals(("mentor"))) {
@@ -38,7 +35,6 @@ public class UserDAO implements IUserDAO {
             } else if (userType.equals("admin")) {
                 return getFullAdmin(id);
             }
-
             throw new DBException("Wrong user type or user doesn't exist");
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in seeProfile()");
@@ -108,7 +104,6 @@ public class UserDAO implements IUserDAO {
                 String phoneNumber = result.getString("phone_number");
                 String email = result.getString("email");
                 String address = result.getString("address");
-
                 mentor = new Mentor(user_id, login, password, firstName, lastName, phoneNumber, email, address);
                 return mentor;
             }
@@ -148,7 +143,6 @@ public class UserDAO implements IUserDAO {
             throw new DBException("Unidentified exception occurred in seeProfile()");
         }
     }
-
 }
 
 

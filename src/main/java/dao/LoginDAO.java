@@ -1,7 +1,6 @@
 package dao;
 
 import model.users.*;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,9 +8,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class LoginDAO implements ILoginDAO {
-
     private DBCreator dbCreator = new DBCreator();
-
 
     public void deleteSession(String sessionId) throws DBException{
         Connection connection;
@@ -22,10 +19,8 @@ public class LoginDAO implements ILoginDAO {
             statement.setString(1, sessionId);
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateMentorByID(Mentor mentor)");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in updateMentorByID(Mentor mentor)");
         }
@@ -51,27 +46,21 @@ public class LoginDAO implements ILoginDAO {
                 userLogin = resultSet.getString("login");
                 userPass = resultSet.getString("password");
                 userType = resultSet.getString("usertype");
-                }
+            }
 
             if (userType.equals("mentor")){
                 user = Optional.of(new Mentor(userId, userLogin, userPass, userType));
-            }
-
-            else if (userType.equals("student")){
+            } else if (userType.equals("student")){
                 user = Optional.of(new Student(userId, userLogin, userPass, userType));
-            }
-            else if (userType.equals("admin")){
+            } else if (userType.equals("admin")){
                 user = Optional.of(new Admin(userId, userLogin, userPass, userType));
             }
-
             resultSet.close();
             statement.close();
             con.close();
-
         } catch (SQLException e) {
             System.out.println(e);
         }
         return user;
-
     }
 }

@@ -42,7 +42,6 @@ public class StudentController implements HttpHandler {
         } catch (Exception e) {
             System.out.println("Unidentified Exception in StudentController");
         }
-
     }
 
     private void showQuests(HttpExchange httpExchange) throws DBException, IOException {
@@ -78,10 +77,8 @@ public class StudentController implements HttpHandler {
 
         Map inputs = DataParser.parseFormData(formData);
         int artifactId = Integer.parseInt(inputs.get("artifact_id").toString());
-
         Artifact artifact = artifactDAO.getArtifact(artifactId);
         int artifactPrice = artifact.getPrice();
-
         int userId = cookieHelper.getUserIdBySessionID(httpExchange);
         User user = userDAO.seeProfile(userId);
         int userCoins = user.getAmountOfCoins();
@@ -124,8 +121,6 @@ public class StudentController implements HttpHandler {
         model.with("class", room);
         String response = template.render(model);
         UtilityService.sendResponse(httpExchange, response);
-
     }
-
 
 }

@@ -6,8 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestDAO implements IQuestDAO {
-    //this class contains methods to process quests: show, create, update
-
     private Connection connection;
     private DBCreator dbCreator;
 
@@ -16,16 +14,13 @@ public class QuestDAO implements IQuestDAO {
     }
 
     public Quest getQuest(int id) throws DBException {
-
         try {
             String query = "select * from quests where id = ?";
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-
             ResultSet result = statement.executeQuery();
             connection.close();
-
             if (result.next()) {
                 id = result.getInt("id");
                 String name = result.getString("quest_name");
@@ -34,11 +29,9 @@ public class QuestDAO implements IQuestDAO {
                 int reward = result.getInt("quest_award");
                 return new Quest(id, name, description, category, reward);
             }
-
             throw new DBException("No quest found in DB with id = " + id);
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getQuest(int id)");
-
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getQuest(int id)");
         }
@@ -50,7 +43,6 @@ public class QuestDAO implements IQuestDAO {
             connection = dbCreator.connectToDatabase();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setInt(1, id);
-
             ResultSet result = statement.executeQuery();
             connection.close();
 
@@ -60,14 +52,11 @@ public class QuestDAO implements IQuestDAO {
                 usersQuests.add(getQuest(id));
             }
             return usersQuests;
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getUsersQuests(int id)");
-
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getUsersQuests(int id)");
         }
-
     }
 
 
@@ -90,16 +79,13 @@ public class QuestDAO implements IQuestDAO {
             resultSet.close();
             stmt.close();
             con.close();
-
             return allQuests;
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getQuestsList()");
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in getQuestsList()");
         }
     }
-
 
     public void createNewQuest(Quest quest) throws DBException {
         String query = "INSERT INTO quests(quest_award, quest_category, quest_description, quest_name) VALUES (?,?,?,?)";
@@ -110,20 +96,13 @@ public class QuestDAO implements IQuestDAO {
             statement.setString(2, quest.getCategory());
             statement.setString(3, quest.getDescription());
             statement.setString(4, quest.getName());
-
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in createNewQuest(Quest quest)");
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in createNewQuest(Quest quest)");
         }
-    }
-
-    //todo
-    public void addQuestToAvailable() {
-
     }
 
     public void updateQuestCategory(Quest quest) throws DBException {
@@ -135,7 +114,6 @@ public class QuestDAO implements IQuestDAO {
             statement.setInt(2, quest.getId());
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateQuestCategory(Quest quest)");
         } catch (Exception e) {
@@ -169,12 +147,10 @@ public class QuestDAO implements IQuestDAO {
             stm.setInt(1, userId);
             stm.setInt(2, questId);
             stm.executeUpdate();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateQuest()");
         } catch (Exception e) {
             throw new DBException("Unidentified exception occurred in updateQuest()");
         }
     }
-
 }

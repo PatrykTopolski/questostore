@@ -78,13 +78,10 @@ public class AdminController implements HttpHandler {
             inputs = DataParser.parseFormData(formData);
             String name = inputs.get("name");
             String rangeString = inputs.get("range");
-
             adminDAO.addLevel(name, Integer.valueOf(rangeString));
-
             String url = "/admin/levels";
             UtilityService.sendRedirect(httpExchange, url);
         }
-
     }
 
     private void showProfile(HttpExchange httpExchange, int id) throws IOException, DBException {
@@ -92,7 +89,6 @@ public class AdminController implements HttpHandler {
         JtwigModel model = JtwigModel.newModel();
 
         User user = userDAO.seeProfile(id);
-
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         String phoneNumber = user.getPhoneNum();
@@ -144,7 +140,6 @@ public class AdminController implements HttpHandler {
 
             User user = null;
             Mentor mentor = null;
-
             String name = inputs.get("name");
             String surname = inputs.get("surname");
             String login = inputs.get("login");
@@ -198,7 +193,6 @@ public class AdminController implements HttpHandler {
             String formData = br.readLine();
 
             inputs = DataParser.parseFormData(formData);
-
             String name = inputs.get("name");
             String surname = inputs.get("surname");
             String login = inputs.get("login");
@@ -213,7 +207,6 @@ public class AdminController implements HttpHandler {
             UtilityService.sendRedirect(httpExchange, url);
         }
     }
-
 }
 
 

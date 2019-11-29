@@ -33,19 +33,16 @@ public class LoginController implements HttpHandler {
                 }catch (DBException exc){
                     System.out.println("DB exception caught in log out sequence, in handle method");
                 }
-
                 HttpCookie cookie = HttpCookie.parse(cookieStr).get(0);
                 cookie.setMaxAge(0);
                 cookie.setVersion(1);
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
             }
-
             JtwigTemplate template = JtwigTemplate.classpathTemplate("/templates/login.twig");
             JtwigModel model = JtwigModel.newModel();
             String response = template.render(model);
             UtilityService.sendResponse(httpExchange, response);
         }
-
 
         if (method.equals("POST")){
             InputStreamReader isr = new InputStreamReader(httpExchange.getRequestBody(), "utf-8");
@@ -71,13 +68,9 @@ public class LoginController implements HttpHandler {
                     exc.printStackTrace();
                     System.out.println("DB exception caought in loginController");
                 }
-
                 httpExchange.getResponseHeaders().add("Set-Cookie", cookie.toString());
                 UtilityService.sendRedirect(httpExchange, url);
-            }
-
-            else {
-                //todo make template with info about wrong user
+            } else {
                 String response = "<html><body>" +
                         "<h1> Sorry there is no such user " +
                         "!</h1></body><html>";

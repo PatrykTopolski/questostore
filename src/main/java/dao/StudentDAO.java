@@ -2,7 +2,6 @@ package dao;
 
 import model.users.Student;
 import model.users.User;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,11 +11,8 @@ import java.util.List;
 
 
 public class StudentDAO implements IStudentDAO {
-    //this class contains methods to create and update student
-
     private Connection connection;
     private DBCreator dbCreator;
-
 
     public StudentDAO() {
         dbCreator = new DBCreator();
@@ -38,17 +34,13 @@ public class StudentDAO implements IStudentDAO {
             statement.setString(7, student.getLogin());
             statement.setString(8, student.getPassword());
             statement.setInt(9, student.getId());
-
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateMentorByID(Mentor mentor)");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in updateMentorByID(Mentor mentor)");
         }
-
     }
 
     public void createStudent(User user, Student student) throws  DBException {
@@ -56,8 +48,9 @@ public class StudentDAO implements IStudentDAO {
         int userID = getUserIdWithLogin(user);
         student.setId(userID);
         createStudent(student);
-
     }
+
+
     public List<Student> getAllStudents() throws DBException{
         List<Student> studentList = new ArrayList();
         try {
@@ -81,7 +74,6 @@ public class StudentDAO implements IStudentDAO {
             return studentList;
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getAllStudents()");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in getAllStudents()");
         }
@@ -105,7 +97,6 @@ public class StudentDAO implements IStudentDAO {
                 Student student = new Student(id, firstName, lastName, phoneNum, email, address, roomId);
                 resultList.add(student);
             }
-
             stm.close();
             result.close();
             connection.close();
@@ -120,8 +111,6 @@ public class StudentDAO implements IStudentDAO {
     }
 
 
-
-
     public int getExperiencePoints(int id) throws DBException {
         try {
             DBCreator dbCreator = new DBCreator();
@@ -133,12 +122,9 @@ public class StudentDAO implements IStudentDAO {
             if (result.next()) {
                 return result.getInt("experience_points");
             }
-
             throw new DBException("No entry with id: " + id);
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in getExperiencePoints()");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in getExperiencePoints()");
         }
@@ -153,10 +139,8 @@ public class StudentDAO implements IStudentDAO {
             statement.setInt(2, user_id);
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateCoins()");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in updateCoins()");
         }
@@ -171,10 +155,8 @@ public class StudentDAO implements IStudentDAO {
             statement.setInt(2, user_id);
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in updateCoins()");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in updateCoins()");
         }
@@ -190,14 +172,11 @@ public class StudentDAO implements IStudentDAO {
             statement.setString(3, user.getUserType());
             statement.executeUpdate();
             connection.close();
-
         } catch (SQLException e) {
             throw new DBException("SQLException occurred in createUser()");
-
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in createUser()");
         }
-
     }
 
 
@@ -226,7 +205,6 @@ public class StudentDAO implements IStudentDAO {
         } catch (Exception e){
             throw new DBException("Unidentified exception occurred in createStudent()");
         }
-
     }
 
     private int getUserIdWithLogin(User user) throws DBException {
@@ -242,14 +220,8 @@ public class StudentDAO implements IStudentDAO {
             return id;
         } catch (SQLException e) {
             throw new DBException("Did not find user with this login SLQ Exception");
-
         } catch (Exception e){
             throw new DBException("Did not find user with this login");
         }
-
     }
-
-
-
-
 }

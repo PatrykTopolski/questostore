@@ -68,7 +68,6 @@ public class MentorController implements HttpHandler {
         } catch (Exception e) {
             System.out.println("Unidentified exception in MentorController");
         }
-
     }
 
 
@@ -90,7 +89,6 @@ public class MentorController implements HttpHandler {
             String formData = br.readLine();
 
             inputs = DataParser.parseFormData(formData);
-
             String title = inputs.get("title");
             int value = Integer.valueOf(inputs.get("value"));
             String description = inputs.get("description");
@@ -147,7 +145,6 @@ public class MentorController implements HttpHandler {
         String response = "";
         User user = new Student();
         String method = httpExchange.getRequestMethod();
-
         user = userDAO.seeProfile(UserId);
 
         if (method.equals("GET")) {
@@ -222,7 +219,7 @@ public class MentorController implements HttpHandler {
             model.with("phone", user.getPhoneNum());
             String response = template.render(model);
             UtilityService.sendResponse(httpExchange, response);
-            }
+        }
 
         if (method.equals("POST")) {
             Map<String, String> inputs;
@@ -240,7 +237,6 @@ public class MentorController implements HttpHandler {
             String email = inputs.get("email");
             String adress = inputs.get("adress");
             String phone = inputs.get("phone");
-
             Student student = new Student(userId, login, password, name, surname, phone, email, adress);
             studentDao.updateStudent(student);
 
@@ -267,7 +263,6 @@ public class MentorController implements HttpHandler {
             JtwigModel model = JtwigModel.newModel();
             response = template.render(model);
             UtilityService.sendResponse(httpExchange, response);
-
         }
 
         if (method.equals("POST")) {
@@ -289,14 +284,12 @@ public class MentorController implements HttpHandler {
             Student student = new Student(0, login, password, name, surname, phone, email, adress, classId, 0, 0);
 
             studentDao.createStudent(user, student);
-
             br.close();
             isr.close();
             String url = "/mentor/students";
             UtilityService.sendRedirect(httpExchange, url);
         }
     }
-
 
     private void showMyStudents(HttpExchange httpExchange, int id) throws IOException, DBException {
         List<Student> studentsList = studentDao.getStudentListFromRoom(id);
@@ -308,14 +301,11 @@ public class MentorController implements HttpHandler {
     }
 
 
-
-
     private void showProfile(HttpExchange httpExchange, int id) throws DBException, IOException {
         JtwigTemplate template = JtwigTemplate.classpathTemplate("templates/mentor/profileMentor.twig");
         JtwigModel model = JtwigModel.newModel();
 
         Mentor user = mentorDAO.getMentorById(id);
-
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
         String phoneNumber = user.getPhoneNum();
@@ -333,7 +323,6 @@ public class MentorController implements HttpHandler {
         String response = template.render(model);
         UtilityService.sendResponse(httpExchange, response);
     }
-
 
 
     private String[] parseResponseURi(String uri) {
